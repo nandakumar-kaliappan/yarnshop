@@ -9,10 +9,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.ComponentScan;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
+@ComponentScan({"com.knkweb.yarnshop.security"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class EntitiyInDatabaseIntegrationTest {
     @Autowired
@@ -38,13 +40,13 @@ public class EntitiyInDatabaseIntegrationTest {
     @Test
     void testAuthorityRepositoryForWrite() {
         int count = authorityRepository.findAll().size();
-        assertEquals(count, 2);
+        assertEquals(count, 5);
     }
 
     @Test
     void testUserRepositoryForWrite(){
         int count = userRepository.findAll().size();
-        assertEquals(count, 2);
+        assertEquals(count, 5);
     }
 
     @Test
@@ -59,5 +61,34 @@ public class EntitiyInDatabaseIntegrationTest {
                 authorityRepository.findByUser(userRepository.findByUsername(user1Name));
         assertEquals(authority.getRoll(), roll1);
 
+    }
+    @Test
+    void testAuthorityByNameForBootstrapData(){
+        Authority authority =
+                authorityRepository.findByUser(userRepository.findByUsername("manager"));
+        assertEquals(authority.getRoll(), "MANAGER");
+
+        Authority authority1 =
+                authorityRepository.findByUser(userRepository.findByUsername("admin"));
+        assertEquals(authority1.getRoll(), "ADMIN");
+
+        Authority authority2 =
+                authorityRepository.findByUser(userRepository.findByUsername("sai"));
+        assertEquals(authority2.getRoll(), "CUSTOMER");
+    }
+
+    @Test
+    void testUserByNameForBootstrapData(){
+        User user =
+                userRepository.findByUsername("manager");
+        assertEquals(user.getPassword(), "passM");
+
+        User user1 =
+                userRepository.findByUsername("admin");
+        assertEquals(user1.getPassword(), "passA");
+
+        User user2 =
+                userRepository.findByUsername("sai");
+        assertEquals(user2.getPassword(), "passS");
     }
 }
