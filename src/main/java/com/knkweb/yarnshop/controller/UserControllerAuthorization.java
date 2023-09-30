@@ -12,22 +12,31 @@ public class UserControllerAuthorization {
         return "all/index";
     }
 
-    @RequestMapping({"/admin/index"})
+//    http://localhost:8080/admin
+//    http://localhost:8080/admin/
+//    http://localhost:8080/admin/index
+//    http://localhost:8080/admin/index/
+
+    @RequestMapping({"/admin/index","/admin"})
     public String welcomeAdmin(Model model){
+        System.out.println("admin welcome");
         return "admin/welcome";
     }
-    @RequestMapping({"/admin/aboutme"})
+    @RequestMapping("/admin/aboutme")
     public String aboutMeAdmin(Model model){
+        System.out.println("admin aboutme");
         return "admin/aboutme";
     }
 
-    @RequestMapping({"/customer/index"})
+    @RequestMapping("/customer/index")
     public String welcomeCustomer(Model model){
-        return "Customer/welcome";
+        System.out.println("welcome customer");
+        return "customer/welcome";
     }
 
-    @RequestMapping({"/customer/aboutme"})
+    @RequestMapping("/customer/aboutme")
     public String aboutMeCustomer(Model model){
-        return "Customer/aboutme";
+        System.out.println("customer aboutme");
+        return "customer/aboutme";
     }
 }
