@@ -11,7 +11,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @ComponentScan({"com.knkweb.yarnshop.security"})
@@ -26,15 +29,15 @@ public class EntitiyInDatabaseIntegrationTest {
     String password = "passwordSample";
     String user1Name = "TestUser1";
     String user2Name = "TestUser2";
-    String roll1 ="Admin";
-    String roll2 = "Customer";
+    String role1 ="Admin";
+    String role2 = "Customer";
 
     @BeforeEach
     void setUp() {
         authorityRepository.saveAndFlush(Authority.builder().user(User.builder().username(
-                user1Name).password(password).build()).roll(roll1).build());
+                user1Name).password(password).build()).role(role1).build());
         authorityRepository.saveAndFlush(Authority.builder().user(User.builder().username(
-                user2Name).password(password).build()).roll(roll2).build());
+                user2Name).password(password).build()).role(role2).build());
     }
 
     @Test
@@ -51,44 +54,48 @@ public class EntitiyInDatabaseIntegrationTest {
 
     @Test
     void testUser(){
-        User user = userRepository.findByUsername(user1Name);
+        Optional<User> userOptional = userRepository.findByUsername(user1Name);
+        assertTrue(userOptional.isPresent());
+        User user = userOptional.get();
         assertEquals(user.getUsername(), user1Name);
         assertEquals(user.getPassword(), password);
     }
     @Test
     void testAuthorityByName(){
-        Authority authority =
-                authorityRepository.findByUser(userRepository.findByUsername(user1Name));
-        assertEquals(authority.getRoll(), roll1);
+        Optional<Authority> authority =
+                authorityRepository.findByUser(userRepository.findByUsername(user1Name).get());
+        assertEquals(authority.get().getRole(), role1);
 
     }
     @Test
     void testAuthorityByNameForBootstrapData(){
-        Authority authority =
-                authorityRepository.findByUser(userRepository.findByUsername("manager"));
-        assertEquals(authority.getRoll(), "MANAGER");
+        Optional<Authority> authority =
+                authorityRepository.findByUser(userRepository.findByUsername("manager").get());
+        assertEquals(authority.get().getRole(), "MANAGER");
 
-        Authority authority1 =
-                authorityRepository.findByUser(userRepository.findByUsername("admin"));
-        assertEquals(authority1.getRoll(), "ADMIN");
+        Optional<Authority> authority1 =
+                authorityRepository.findByUser(userRepository.findByUsername("admin").get());
+        assertEquals(authority1.get().getRole(), "ADMIN");
 
-        Authority authority2 =
-                authorityRepository.findByUser(userRepository.findByUsername("sai"));
-        assertEquals(authority2.getRoll(), "CUSTOMER");
+        Optional<Authority> authority2 =
+                authorityRepository.findByUser(userRepository.findByUsername("sai").get());
+        assertEquals(authority2.get().getRole(), "CUSTOMER");
+
+
     }
 
     @Test
     void testUserByNameForBootstrapData(){
         User user =
-                userRepository.findByUsername("manager");
+                userRepository.findByUsername("manager").get();
         assertEquals(user.getPassword(), "passM");
 
         User user1 =
-                userRepository.findByUsername("admin");
+                userRepository.findByUsername("admin").get();
         assertEquals(user1.getPassword(), "passA");
 
         User user2 =
-                userRepository.findByUsername("sai");
+                userRepository.findByUsername("sai").get();
         assertEquals(user2.getPassword(), "passS");
     }
 }

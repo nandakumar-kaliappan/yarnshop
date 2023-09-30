@@ -20,5 +20,5 @@ public class Authority extends BaseEntity{
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
 
-    private String roll;
+    private String role;
 }

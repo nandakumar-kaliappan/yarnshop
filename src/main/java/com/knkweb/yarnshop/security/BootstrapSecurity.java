@@ -24,10 +24,10 @@ public class BootstrapSecurity implements CommandLineRunner {
 
     private void bootstrapData() {
         authorityRepository.saveAndFlush(Authority.builder().user(User.builder().username(
-                "manager").password("passM").build()).roll("MANAGER").build());
+                "manager").password("passM").build()).role("MANAGER").build());
         authorityRepository.saveAndFlush(Authority.builder().user(User.builder().username(
-                "sai").password("passS").build()).roll("CUSTOMER").build());
+                "sai").password("passS").build()).role("CUSTOMER").build());
         authorityRepository.saveAndFlush(Authority.builder().user(User.builder().username(
-                "admin").password("passA").build()).roll("ADMIN").build());
+                "admin").password("passA").build()).role("ADMIN").build());
     }
 }
