@@ -4,20 +4,19 @@ import com.knkweb.yarnshop.repositories.AuthorityRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyUserDetailServiceTest {
+class MyUserDetailTest {
     UserDetails userDetails;
     String customerName = "sai";
-    @Autowired
-    AuthorityRepository authorityRepository;
     @Test
     void TestLoadUserByName(){
-        userDetails = new MyUserDetailService(authorityRepository).loadUserByUsername(customerName);
+        userDetails = new MyUserDetails(customerName);
         assertNotNull(userDetails);
         assertEquals(userDetails.getUsername(),customerName);
-        assertEquals(userDetails.getPassword(),"pa");
+        assertEquals(userDetails.getPassword(),null);
         //assertEquals(userDetails.getAuthorities().iterator().next().getAuthority(),"CUSTOMER");
         //System.out.println(userDetails.getAuthorities().iterator().next().getAuthority());
 

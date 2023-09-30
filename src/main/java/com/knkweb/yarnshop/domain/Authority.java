@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Authority extends BaseEntity{
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private User user;
 
     private String role;
