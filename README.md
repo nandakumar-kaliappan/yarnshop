@@ -60,11 +60,10 @@ The database schema will include tables for products, users, orders, and related
 ## Planning
 
 - [x] Define project scope and objectives.
-- [ ] Gather detailed requirements.
-- [ ] Design database schema.
-- [ ] Create wireframes and UI mockups.
-- [ ] Set up development environment.
-- [ ] Begin backend development.
+- [x] Gather detailed requirements.
+- [x] Design database schema.
+- [x] Set up development environment.
+- [x] Begin backend development.
 - [ ] Implement user registration and authentication.
 - [ ] Develop product catalog and cart management.
 - [ ] Integrate payment processing.
