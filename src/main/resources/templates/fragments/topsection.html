@@ -2,66 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <style>
-        /* Style for the menu bar */
-        ul.menu-bar {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            background-color: #555; /* Menu bar background color */
-            overflow: hidden;
-        }
 
-        /* Style for menu items */
-        ul.menu-bar li {
-            float: left;
-        }
-
-        ul.menu-bar li a {
-            display: block;
-            color: white; /* Text color for menu items */
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        ul.menu-bar li a:hover {
-            background-color: #555; /* Background color on hover */
-        }
-
-        /* Style for the final button */
-        .end-button {
-            float: right;
-            margin-right: 10px;
-            margin-top: 8px;
-        }
-
-        .end-button button {
-            background-color: #4CAF50; /* Button background color */
-            color: white; /* Button text color */
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .end-button button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-        .button-like-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff; /* Button background color */
-            color: white; /* Button text color */
-            text-decoration: none; /* Remove underlines from the link */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .button-like-link:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
     </style>
 </head>
 <body>
@@ -93,6 +34,7 @@
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="#">Orders</a></li>
+        <li><a href="#" th:href="'/admin/quick-order'">Quick Order</a></li>
         <li><a href="#">Settings</a></li>
         <div class="end-button">
             <a th:href="@{/logout}" class="button-like-link">Sign Out</a>
