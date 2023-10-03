@@ -11,7 +11,9 @@ public class UserControllerAuthorization {
 
     @RequestMapping({"/","/index","/index.html"})
     public String indexPage(Model model){
-        return "all/index";
+        model.addAttribute("username",null);
+        model.addAttribute("role","all");
+        return "all/products";
     }
 
 //    http://localhost:8080/admin
@@ -39,7 +41,7 @@ public class UserControllerAuthorization {
         System.out.println("welcome customer");
         model.addAttribute("username",userDetails.getUsername());
         System.out.println(userDetails.getUsername());
-        return "customer/welcome";
+        return "all/products";
     }
 
     @RequestMapping("/customer/aboutme")

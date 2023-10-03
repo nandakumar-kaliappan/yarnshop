@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        /* Style for the menu bar */
+        ul.menu-bar {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Menu bar background color */
+            overflow: hidden;
+        }
+
+        /* Style for menu items */
+        ul.menu-bar li {
+            float: left;
+        }
+
+        ul.menu-bar li a {
+            display: block;
+            color: white; /* Text color for menu items */
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        ul.menu-bar li a:hover {
+            background-color: #555; /* Background color on hover */
+        }
+
+        /* Style for the final button */
+        .end-button {
+            float: right;
+            margin-right: 10px;
+            margin-top: 8px;
+        }
+
+        .end-button button {
+            background-color: #4CAF50; /* Button background color */
+            color: white; /* Button text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .end-button button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Apply styles to the top and bottom sections */
+        header, footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Ensure it's above other elements */
+        }
+
+        footer {
+            position: sticky;
+            bottom: 0;
+            z-index: 100; /* Ensure it's above other elements */
+        }
+
+        /* Create a scrollable middle section */
+        .content {
+            margin-top: 40px; /* Adjust this value to match the top section's height */
+            margin-bottom: 40px; /* Adjust this value to match the bottom section's height */
+            height: 1000px; /* Add some content height for demonstration */
+        }
+
+        /* Add some content for demonstration purposes */
+        .content p {
+            margin: 20px;
+        }
+        .button-like-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Button background color */
+            color: white; /* Button text color */
+            text-decoration: none; /* Remove underlines from the link */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button-like-link:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments/topsection::menubar-all}" th:if="">
+        something
+    </div>
+</header>
+
+<div class="content">
+    <!-- Scrollable Content Goes Here -->
+    <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>4 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>4 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>4 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>4 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>1 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>2 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>3 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <p>4 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        srgjsfskjfgsjfgjsfgkjsdfjg;sdgj;sdfjg;sdfjg;sdjjfdgjfdgjfjgfjg;dsfjgsf;jgfg;sfdkgjsdfjgjkjn...
+
+    </p>
+    <!-- Repeat as needed -->
+</div>
+
+<footer>
+    <p> Bottom Section</p>
+</footer>
+</body>
+</html>
