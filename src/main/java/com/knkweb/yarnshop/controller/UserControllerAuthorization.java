@@ -1,5 +1,6 @@
 package com.knkweb.yarnshop.controller;
 
+import com.knkweb.yarnshop.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserControllerAuthorization {
+    private final UserService userService;
+
+    public UserControllerAuthorization(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping({"/","/index","/index.html"})
     public String indexPage(Model model){
@@ -15,12 +21,12 @@ public class UserControllerAuthorization {
         model.addAttribute("topRole","all");//todo refactor this
         return "all/products";
     }
-
-//    http://localhost:8080/admin
-//    http://localhost:8080/admin/
-//    http://localhost:8080/admin/index
-//    http://localhost:8080/admin/index/
-
+    @RequestMapping({"/homepage"})
+    public String homePage(Model model, @AuthenticationPrincipal UserDetails userDetails){
+        model.addAttribute("username",userDetails.getUsername());
+        model.addAttribute("topRole",userService.findMaxRole(userDetails));//todo refactor this
+        return "all/products";
+    }
     @RequestMapping({"/admin/index","/admin"})
     public String welcomeAdmin(Model model, @AuthenticationPrincipal UserDetails userDetails){
         System.out.println("admin welcome");
