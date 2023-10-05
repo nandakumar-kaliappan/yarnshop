@@ -19,6 +19,5 @@ public class Authority extends BaseEntity{
 
     @ManyToOne
     private User user;
-
     private String role;
 }

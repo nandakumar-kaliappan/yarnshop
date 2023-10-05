@@ -1,7 +1,7 @@
 package com.knkweb.yarnshop.security.config;
 
 import com.knkweb.yarnshop.domain.User;
-import com.knkweb.yarnshop.repositories.AuthorityRepository;
+
 import com.knkweb.yarnshop.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

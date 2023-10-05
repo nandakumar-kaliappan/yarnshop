@@ -2,7 +2,7 @@ package com.knkweb.yarnshop;
 
 import com.knkweb.yarnshop.domain.Authority;
 import com.knkweb.yarnshop.domain.User;
-import com.knkweb.yarnshop.repositories.AuthorityRepository;
+
 import com.knkweb.yarnshop.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ComponentScan({"com.knkweb.yarnshop.security"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class EntitiyInDatabaseIntegrationTest {
-    @Autowired
-    AuthorityRepository authorityRepository;
+
 
     @Autowired
     UserRepository userRepository;

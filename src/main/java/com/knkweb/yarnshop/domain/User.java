@@ -1,5 +1,6 @@
 package com.knkweb.yarnshop.domain;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,13 +13,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(exclude = {"authorities","customer"})
+@ToString(exclude = {"authorities"})
 @Entity
 public class User extends BaseEntity{
 
     private String username;
     private String password;
+    private boolean enabled;
+
+
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    private Customer customer;
 
     @Builder.Default
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
@@ -30,5 +36,10 @@ public class User extends BaseEntity{
         }
         authority.setUser(this);
         this.authorities.add(authority);
+    }
+
+    public void addCustomer(Customer customer){
+        this.customer  = customer;
+        customer.setUser(this);
     }
 }

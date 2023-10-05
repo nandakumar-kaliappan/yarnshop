@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
                             CONSTRAINT `user_id_fk` FOREIGN KEY (user_id) REFERENCES `user`(`id`)
 ) ENGINE=InnoDB;
 ALTER TABLE `user`
-    ADD COLUMN `customer_id` bigint NOT NULL;
+    ADD COLUMN `customer_id` bigint;
 ALTER TABLE `user`
     ADD CONSTRAINT `customer_id_fk`
         FOREIGN KEY (`customer_id`) REFERENCES `customer`(`id`);

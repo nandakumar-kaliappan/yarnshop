@@ -1,6 +1,6 @@
 package com.knkweb.yarnshop.security.config;
 
-import com.knkweb.yarnshop.repositories.AuthorityRepository;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
