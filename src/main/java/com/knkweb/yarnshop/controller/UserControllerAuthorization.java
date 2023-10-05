@@ -44,15 +44,7 @@ public class UserControllerAuthorization {
         return "admin/aboutme";
     }
 
-    @RequestMapping("/admin/quick-order")
-    public String ordersAdmin(Model model, @AuthenticationPrincipal UserDetails userDetails){
-        System.out.println("quick order page");
-        model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("topRole","admin"); //todo refactor this
-        Long customerId = 1l; //todo update needed here. replace the hardcoded value;
-        model.addAttribute("customerId",customerId);
-        return "customer/quick-order";
-    }
+
 
     @RequestMapping("/customer/index")
     public String welcomeCustomer(Model model, @AuthenticationPrincipal UserDetails userDetails){

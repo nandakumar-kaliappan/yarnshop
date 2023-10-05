@@ -98,3 +98,25 @@ input[type="submit"]:hover {
 #addItemButton:hover {
     background-color: #45a049;
 }
+
+/* Style the datalist options */
+datalist {
+    max-height: 200px; /* Set a max height for the dropdown */
+    overflow-y: auto; /* Add vertical scroll if options exceed max height */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+}
+
+/* Style the individual option items */
+option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+/* Style the hover state of options */
+option:hover {
+    background-color: #f2f2f2;
+}

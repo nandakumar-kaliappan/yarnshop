@@ -29,11 +29,18 @@
 <main>
     <section class="scrollable">
         <!-- Scrollable Content Goes Here -->
-        <div th:replace="~{fragments/quick-order-form::quick-order-user}">
+        <div th:replace="~{fragments/quick-order-form::quick-order-user(${products})}">
             something
         </div>
         <!-- Repeat as needed -->
     </section>
+
+    <div>
+        <!--/*@thymesVar id="products" type="java.util.List<com.knkweb.yarnshop.domain.Product>"*/-->
+        <ol th:each="p:${products}">
+            <li th:text="${p.description}">description</li>
+        </ol>
+    </div>
 </main>
 
 

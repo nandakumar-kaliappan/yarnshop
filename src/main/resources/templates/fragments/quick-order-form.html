@@ -6,18 +6,16 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/quick-order-form.css}">
 </head>
 <body>
-<div th:fragment="quick-order-user">
+<div th:fragment="quick-order-user (products)">
     <h2>Customer ID: <span th:text="${customerId}">id value</span></h2>
     <form id="itemForm">
         <label for="itemInput">Select the colour references</label>
         <input type="text" id="itemInput" list="itemOptions">
-        <datalist id="itemOptions">
-            <option value="C110">
-            <option value="C111">
-            <option value="C112">
-            <option value="C113">
-            <option value="C114">
+        <datalist   id="itemOptions" >
+            <option th:each="p:${products}" th:value="${p.description}"
+                    th:text="${p.description}"></option>
         </datalist>
+
         <button type="button" id="addItemButton">Add Item</button>
         <ul id="itemList"></ul>
         <input type="submit" value="Submit">
