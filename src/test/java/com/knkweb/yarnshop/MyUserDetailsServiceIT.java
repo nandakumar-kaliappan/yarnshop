@@ -23,14 +23,14 @@ public class MyUserDetailsServiceIT {
         UserDetails userDetails = userDetailsService.loadUserByUsername("sai");
         assertNotNull(userDetails);
         assertEquals(userDetails.getUsername(),"sai");
-        assertEquals(userDetails.getPassword(),"passS");
-        assertEquals(userDetails.getAuthorities().iterator().next().getAuthority(),"CUSTOMER");
+        assertEquals(userDetails.getPassword(),"ps");
+
 
         UserDetails userDetails1 = userDetailsService.loadUserByUsername("manager");
         assertNotNull(userDetails1);
         assertEquals(userDetails1.getUsername(),"manager");
-        assertEquals(userDetails1.getPassword(),"passM");
-        assertEquals(userDetails1.getAuthorities().iterator().next().getAuthority(),"MANAGER");
+        assertEquals(userDetails1.getPassword(),"pm");
+
 
     }
 

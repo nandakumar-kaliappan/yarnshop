@@ -2,10 +2,8 @@ package com.knkweb.yarnshop.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -18,10 +16,8 @@ import java.util.Set;
 public class Category extends BaseEntity{
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "product_category",
-    joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> products;
+    @Builder.Default
+    @ManyToMany(mappedBy = "categories",fetch = FetchType.EAGER)
+    private Set<Product> products = new HashSet<>();
 
 }

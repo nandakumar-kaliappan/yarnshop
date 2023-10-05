@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,11 +30,11 @@ public class User extends BaseEntity{
 
     @Builder.Default
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    private List<Authority> authorities = new ArrayList<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     public void addAuthorities(Authority authority) {
         if(authorities==null){
-            authorities = new ArrayList<>();
+            authorities = new HashSet<>();
         }
         authority.setUser(this);
         this.authorities.add(authority);
