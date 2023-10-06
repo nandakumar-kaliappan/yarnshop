@@ -14,9 +14,10 @@ import javax.persistence.ManyToOne;
 @Entity
 public class OrderLine extends BaseEntity {
 
-    private int level;
+    private Integer level;
     private String status;
     private Integer quantityOrdered;
+    private String unit;
 
     @ManyToOne
     private OrderHeader orderHeader;

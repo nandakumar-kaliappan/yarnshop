@@ -21,7 +21,6 @@ ALTER TABLE `user`
 
 CREATE TABLE IF NOT EXISTS `order_header` (
                                 `id`  bigint NOT NULL AUTO_INCREMENT,
-                                `status` varchar(30) DEFAULT  NULL,
                                 levels INTEGER DEFAULT 1,
                                 `billing_address` varchar(30) DEFAULT NULL,
                                 `billing_zip_code` varchar(30) DEFAULT NULL,

@@ -16,7 +16,7 @@ import java.util.Set;
 public class Customer extends BaseEntity {
 
 
-    @OneToOne(cascade = {CascadeType.REMOVE})
+    @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     User user;
 
     private String userName;
@@ -33,4 +33,11 @@ public class Customer extends BaseEntity {
 
    // @Version
     private Integer version;
+
+    public void setUser(User user){
+        if(user != null) {
+            this.user = user;
+            user.setCustomer(this);
+        }
+    }
 }

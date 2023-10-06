@@ -33,8 +33,7 @@ import java.util.Set;
 @Entity
 public class OrderHeader extends BaseEntity {
 
-    private String status;
-
+    
     private int levels;
 
     @Embedded
@@ -44,8 +43,8 @@ public class OrderHeader extends BaseEntity {
     private Address shippingAddress;
 
 
-    @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+
+    private String orderStatus;
 
     @OneToMany(mappedBy = "orderHeader",
             cascade = {CascadeType.REMOVE,CascadeType.PERSIST}, fetch = FetchType.EAGER)

@@ -8,8 +8,19 @@
 <body>
 <div th:fragment="quick-order-user (products)">
     <div class="itemForm">
-        <h2>Customer ID: <span th:text="${customerId}">id value</span></h2>
 
+
+        <label for="customerInput" th:if="${customerId}==null">Select the customer</label>
+        <input type="text"  th:if="${customerId}==null" id="customerInput" list="customerOptions">
+        <datalist id="customerOptions" th:if="${customerId}==null">
+            <!--/*@thymesVar id="customers" type="java.util.ArrayList<com.knkweb.yarnshop.domain
+            .Customer>"*/-->
+            <option  th:each="c:${customers}" th:value="${c.id}"
+                    th:text="'Name: '+${c.customerName}+', Ph: '+${c.phone}"></option>
+        </datalist>
+        <ul id="Customer Details"></ul>
+        <h2 th:unless="${customerId}==null">Customer ID:
+            <span th:text="${customerId}">id value</span></h2>
         <label for="itemInput">Select the colour references</label>
         <input type="text" id="itemInput" list="itemOptions">
         <datalist id="itemOptions">
@@ -25,6 +36,9 @@
             <input type="hidden" th:field="*{itemsData}" id="itemsData" name="itemsData"  value="">
             <input type="hidden" th:field="*{quantitiesData}" id="quantitiesData" name="quantitiesData" value="">
             <input type="hidden" th:field="*{unitsData}" id="unitsData" name="unitsData" value="">
+            <input type="hidden" th:field="*{levels}" id="levels" name="levels"
+                   value="*{levels}">
+            <input type="hidden" th:field="*{customerId}" id="customerId" name="customerId" value="*{customerId}">
             <input type="submit"  value="Submit">
         </form>
     </div>
@@ -106,6 +120,12 @@
                 document.getElementById("itemsData").value = JSON.stringify(items);
                 document.getElementById("quantitiesData").value = JSON.stringify(quantities);
                 document.getElementById("unitsData").value = JSON.stringify(units);
+                document.getElementById("levels").value = document.getElementById("levels").value
+                    +1;
+                if(document.getElementById("customerId").value == ""){
+                    document.getElementById("customerId").value
+                        =document.getElementById("customerInput").value;
+                }
                 console.log("Items:", items);
                 itemForm.submit();
             });

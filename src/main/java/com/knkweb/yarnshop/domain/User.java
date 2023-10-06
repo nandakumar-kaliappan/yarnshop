@@ -22,10 +22,11 @@ public class User extends BaseEntity{
 
     private String username;
     private String password;
-    private boolean enabled;
+    @Builder.Default
+    private boolean enabled = true;
 
 
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne
     private Customer customer;
 
     @Builder.Default
@@ -40,8 +41,4 @@ public class User extends BaseEntity{
         this.authorities.add(authority);
     }
 
-    public void addCustomer(Customer customer){
-        this.customer  = customer;
-        customer.setUser(this);
-    }
 }
