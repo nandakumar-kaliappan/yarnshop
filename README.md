@@ -64,6 +64,7 @@ The database schema will include tables for products, users, orders, and related
 - [x] Design database schema.
 - [x] Set up development environment.
 - [x] Begin backend development.
+- [ ] Develop Order managemant.
 - [ ] Implement user registration and authentication.
 - [ ] Develop product catalog and cart management.
 - [ ] Integrate payment processing.
