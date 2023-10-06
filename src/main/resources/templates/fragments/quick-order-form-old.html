@@ -7,30 +7,23 @@
 </head>
 <body>
 <div th:fragment="quick-order-user (products)">
-    <div class="itemForm">
-        <h2>Customer ID: <span th:text="${customerId}">id value</span></h2>
-
+    <h2>Customer ID: <span th:text="${customerId}">id value</span></h2>
+    <form id="itemForm">
         <label for="itemInput">Select the colour references</label>
         <input type="text" id="itemInput" list="itemOptions">
-        <datalist id="itemOptions">
+        <datalist   id="itemOptions" >
             <option th:each="p:${products}" th:value="${p.description}"
                     th:text="${p.description}"></option>
         </datalist>
 
         <button type="button" id="addItemButton">Add Item</button>
         <ul id="itemList"></ul>
+        <input type="submit" value="Submit">
+    </form>
 
-        <form id="itemForm1" th:object="${quickOrderCommand}"
-              th:action="@{/admin/quick-order/place}" method="post">
-            <input type="hidden" th:field="*{itemsData}" id="itemsData" name="itemsData"  value="">
-            <input type="hidden" th:field="*{quantitiesData}" id="quantitiesData" name="quantitiesData" value="">
-            <input type="hidden" th:field="*{unitsData}" id="unitsData" name="unitsData" value="">
-            <input type="submit"  value="Submit">
-        </form>
-    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const itemForm = document.getElementById("itemForm1");
+            const itemForm = document.getElementById("itemForm");
             const itemInput = document.getElementById("itemInput");
             const addItemButton = document.getElementById("addItemButton");
             const itemList = document.getElementById("itemList");
@@ -53,8 +46,6 @@
                     // Create the quantity input
                     const quantityInput = document.createElement("input");
                     quantityInput.type = "number";
-                    quantityInput.value = 1;
-                    quantityInput.min = 1;
                     quantityInput.placeholder = "Qty";
                     itemContainer.appendChild(quantityInput);
 
@@ -74,7 +65,6 @@
                     removeButton.textContent = "Remove";
                     removeButton.addEventListener("click", function () {
                         itemContainer.remove();
-                        selectedItems.delete(selectedItem);
                     });
                     itemContainer.appendChild(removeButton);
 
@@ -90,24 +80,15 @@
                 e.preventDefault(); // Prevent the form from submitting (for demonstration purposes)
 
                 // You can collect and process the item data here before submitting the form
-
-                var items = [];
-                var quantities = [];
-                var units = [];
+                const items = [];
                 const itemContainers = document.querySelectorAll(".item-container");
                 itemContainers.forEach(container => {
                     const itemName = container.querySelector("span").textContent;
                     const quantity = container.querySelector("input").value;
                     const unit = container.querySelector("select").value;
-                    items.push(itemName);
-                    quantities.push(quantity);
-                    units.push(unit);
+                    items.push({name: itemName, quantity, unit});
                 });
-                document.getElementById("itemsData").value = JSON.stringify(items);
-                document.getElementById("quantitiesData").value = JSON.stringify(quantities);
-                document.getElementById("unitsData").value = JSON.stringify(units);
                 console.log("Items:", items);
-                itemForm.submit();
             });
         });
     </script>

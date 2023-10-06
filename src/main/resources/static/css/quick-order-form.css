@@ -1,122 +1,112 @@
-h2 {
-    text-align: center;
+/* Apply styles to the entire form container */
+.itemForm {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+/* Style the Customer ID section */
+.itemForm h2 {
+    font-size: 18px;
     color: #333;
 }
 
-#itemForm {
-    background-color: #fff;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
+/* Style the label for item selection */
 label {
+    font-weight: bold;
     display: block;
-    /*font-weight: bold;*/
+    margin-top: 10px;
 }
 
+/* Style the input field for item selection */
 #itemInput {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
-.item-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+/* Style the "Add Item" button */
+#addItemButton {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
+/* Style the list of selected items */
+#itemList {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+/* Style each item container within the list */
+.item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Style the item name within the container */
 .item-container span {
     flex-grow: 1;
     margin-right: 10px;
-}
-
-.item-container input[type="number"] {
-    width: 60px;
-    height: 30px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 10px;
-}
-
-.item-container select {
-    width: 80px;
-    height: 30px;
-    padding: 5px 10px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.item-container button {
-    background-color: #fff;
-    color: #0047AB	;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.item-container button:hover {
-    /*background-color: #999;*/
     font-weight: bold;
 }
 
-input[type="submit"] {
-    display: block;
-    background-color: #008CBA;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #0073a6;
-}
-
-#addItemButton {
-    display: block;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-#addItemButton:hover {
-    background-color: #45a049;
-}
-
-/* Style the datalist options */
-datalist {
-    max-height: 200px; /* Set a max height for the dropdown */
-    overflow-y: auto; /* Add vertical scroll if options exceed max height */
+/* Style the quantity input within the container */
+.item-container input[type="number"] {
+    width: 50px;
+    padding: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    position: absolute;
-    z-index: 1;
-    background-color: #fff;
+    border-radius: 3px;
 }
 
-/* Style the individual option items */
-option {
-    padding: 8px;
+/* Style the unit dropdown within the container */
+.item-container select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style the "Remove" button within the container */
+.item-container button {
+    background-color: #FF4500;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
     cursor: pointer;
 }
 
-/* Style the hover state of options */
-option:hover {
-    background-color: #f2f2f2;
+/* Style the submit button */
+#itemForm1 input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
 }
+
+/* Apply styles to the hidden form elements */
+#itemForm1 {
+    display: block;
+}
+
+/* Customize other styles as needed */
