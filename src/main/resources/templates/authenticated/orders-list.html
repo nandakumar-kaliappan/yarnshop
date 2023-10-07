@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    meta charset="UTF-8">
-    <title>Quick order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/quick-order-form.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order-view.css}">
 </head>
 <body>
 <header>
@@ -29,14 +30,14 @@
 <main>
     <section class="scrollable">
         <!-- Scrollable Content Goes Here -->
-        <div th:replace="~{fragments/quick-order-form::quick-order-user(${products})}">
+        <div th:replace="~{fragments/order-view::order-view-block}">
             something
         </div>
         <!-- Repeat as needed -->
     </section>
 
-</main>
 
+</main>
 
 </body>
 </html>

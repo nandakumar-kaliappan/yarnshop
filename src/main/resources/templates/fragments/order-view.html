@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Interactive Form with Dynamic Options</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/quick-order-form.css}">
+</head>
+<body>
+<div th:fragment="order-view-block">
+
+    <div class="order-block">
+        <div class="order-header">
+            <div style="font-weight: bold;">Name: John Doe</div>
+            <div style="font-weight: bold;">Order ID: #12345</div>
+        </div>
+        <br>
+        <div class="order-body">
+            <p>Ordered Date: 2023-10-07</p>
+            <br>
+            <p>Items Count: 3 <button class="toggle-items"></button></p>
+            <ul class="item-list">
+                <li>Product X</li>
+                <li>Product Y</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const toggleItems = document.querySelectorAll('.toggle-items');
+        toggleItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const itemList = item.parentElement.nextElementSibling;
+                if (itemList.style.display === 'none' || itemList.style.display === '') {
+                    itemList.style.display = 'block';
+                    item.style.backgroundColor = '#a0a0a0';
+                } else {
+                    itemList.style.display = 'none';
+                    item.style.backgroundColor = '#f0f0f0';
+                }
+            });
+        });
+    </script>
+
+</div>
+</body>
+</html>

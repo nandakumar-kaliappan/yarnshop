@@ -52,6 +52,15 @@ public class OrderController {
         System.out.println("__".repeat(5));
         System.out.println(quickOrderCommand);
         orderHeaderService.saveOrUpdate(quickOrderCommand);
-        return "redirect:/admin/index";
+        return "redirect:/auth/orderlist";
+    }
+
+    @RequestMapping("/auth/orderlist")
+    public String viewAllOrders(Model model){
+        System.out.println("Orders list");
+        model.addAttribute("topRole","admin"); //todo refactor this
+
+        return "authenticated/orders-list";
+
     }
 }

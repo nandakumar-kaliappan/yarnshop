@@ -38,10 +38,10 @@ public class BootstrapSecurity implements CommandLineRunner {
         }
     }
     private void bootstrapData() {
-        User usera = User.builder().username("admin").password("admin").build();
+        User usera = User.builder().username("admin").password("ad").build();
         usera.addAuthorities(Authority.builder().role("ADMIN").build());
 
-        User userm = User.builder().username("manager").password("manager").build();
+        User userm = User.builder().username("manager").password("ma").build();
         userm.addAuthorities(Authority.builder().role("ADMIN").build());
         userm.addAuthorities(Authority.builder().role("MANAGER").build());
 
