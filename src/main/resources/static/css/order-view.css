@@ -56,3 +56,33 @@
     float: right;
     /*border-radius: 5px;*/
 }
+.view-details-button {
+    float: right;
+    top: 10px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.view-details-button:hover {
+    background-color: #555;
+}
+/* CSS for the button-styled link */
+.button-link {
+    float: right;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #5086b3;
+    color: #fff;
+    text-decoration: none; /* Remove underlines */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-link:hover {
+    background-color: #555;
+}

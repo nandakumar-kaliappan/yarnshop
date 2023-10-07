@@ -52,7 +52,7 @@ public class OrderController {
             , @RequestParam("itemsData") String itemsData,
                                     @RequestParam("quantitiesData") String quantitiesData,
                                     @RequestParam(
-            "unitsData") String unitsData) {
+                                            "unitsData") String unitsData) {
         System.out.println("Order placed");
         System.out.println(itemsData + " \n " + quantitiesData + " \n" + unitsData);
         System.out.println("__".repeat(5));
@@ -66,14 +66,14 @@ public class OrderController {
         System.out.println("Orders list");
         String topRole = userService.findMaxRole(userDetails);
         model.addAttribute("topRole", topRole);
-        model.addAttribute("username",userDetails.getUsername());
+        model.addAttribute("username", userDetails.getUsername());
 
         if (topRole.equals("customer")) {
 
             User user = userService.findUser(userDetails);
             System.out.println("__".repeat(50));
             System.out.println(user.getUsername());
-            System.out.println("TopRole: "+topRole);
+            System.out.println("TopRole: " + topRole);
             System.out.println("Customer Requesting order");
             System.out.println(user);
             System.out.println(user.getCustomer());
@@ -82,11 +82,50 @@ public class OrderController {
             model.addAttribute("orders", orderHeaderService.findOrders(user.getCustomer()));
         } else {
             System.out.println("__".repeat(50));
-            System.out.println("TopRole: "+topRole);
+            System.out.println("TopRole: " + topRole);
             System.out.println("Admin Requesting order");
             System.out.println("__".repeat(50));
             model.addAttribute("orders", orderHeaderService.findAllOrders());
         }
         return "authenticated/orders-list";
     }
+
+    @RequestMapping("/auth/{orderId}/suborder")
+    public String placeOrderRequest(Model model,
+                                    @AuthenticationPrincipal UserDetails userDetails
+            , @PathVariable String orderId) {
+
+        String topRole = userService.findMaxRole(userDetails);
+        QuickOrderCommand quickOrderCommand1 =
+                orderHeaderService.findProductsOfLastStage(Long.parseLong(orderId));
+        model.addAttribute("quickOrderCommand", quickOrderCommand1);
+        System.out.println("__".repeat(50));
+        System.out.println("sub order request received for: " + orderId);
+        System.out.println("Admin Requesting order");
+        System.out.println("quick order passed to form:");
+        System.out.println(quickOrderCommand1);
+        System.out.println("__".repeat(50));
+        model.addAttribute("topRole", topRole);
+        model.addAttribute("username", userDetails.getUsername());
+
+        return "authenticated/suborder";
+    }
+
+    @RequestMapping("/admin/quick-order/replace")
+    public String replaceOrderRequest(Model model,
+                                      @ModelAttribute QuickOrderCommand quickOrderCommand,
+                                      @AuthenticationPrincipal UserDetails userDetails
+            , @RequestParam("itemsData") String itemsData,
+                                      @RequestParam("quantitiesData") String quantitiesData,
+                                      @RequestParam(
+                                              "unitsData") String unitsData) {
+        System.out.println("__".repeat(50));
+        System.out.println("Order Re- placed");
+        System.out.println(itemsData + " \n " + quantitiesData + " \n" + unitsData);
+        System.out.println(quickOrderCommand);
+        System.out.println("__".repeat(50));
+        //orderHeaderService.saveOrUpdate(quickOrderCommand);
+        return "redirect:/auth/orderslist";
+    }
+
 }
