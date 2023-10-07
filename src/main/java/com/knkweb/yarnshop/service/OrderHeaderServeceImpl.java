@@ -31,8 +31,37 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
     @Transactional
     public void saveOrUpdate(QuickOrderCommand quickOrderCommand) {
 
-        OrderHeader orderHeader = cmdToObjConverter.convert(quickOrderCommand);
-        orderHeaderRepository.saveAndFlush(orderHeader);
+        if (quickOrderCommand.getOrderHeaderId()==null) {
+            System.out.println("New Order About to be Placed.");
+            OrderHeader orderHeader = cmdToObjConverter.convert(quickOrderCommand);
+            orderHeader.setCount(orderHeader.getOrderLines().size());
+            orderHeaderRepository.saveAndFlush(orderHeader);
+        } else {
+
+            OrderHeader orderHeader1 = cmdToObjConverter.convert(quickOrderCommand);
+            System.out.println("--".repeat(50));
+
+            System.out.println("Old Order About to be Re-Placed");
+            System.out.println(orderHeader1);
+
+            System.out.println("--".repeat(50));
+
+            OrderHeader orderHeader =
+                    orderHeaderRepository.findById(quickOrderCommand.getOrderHeaderId()).get();
+
+            orderHeader.setLevels(orderHeader1.getLevels());
+            orderHeader.setCount(orderHeader1.getOrderLines().size());
+            orderHeader.setOrderStatus(orderHeader1.getOrderStatus());
+            System.out.println("---XXX----");
+            orderHeader.getOrderLines().forEach(System.out::println);
+            System.out.println("---XXX----");
+            orderHeader1.getOrderLines().forEach(orderLine -> {
+                System.out.println(orderLine);
+                orderHeader.addOrderLine(orderLine);
+            });
+            orderHeaderRepository.save(orderHeader);
+
+        }
     }
 
     @Override

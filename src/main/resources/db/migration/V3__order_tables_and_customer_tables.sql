@@ -17,11 +17,11 @@ ALTER TABLE `user`
     ADD COLUMN `customer_id` bigint;
 ALTER TABLE `user`
     ADD CONSTRAINT `customer_id_fk`
-        FOREIGN KEY (`customer_id`) REFERENCES `customer`(`id`);
+        FOREIGN KEY (`customer_id`) REFERENCES `customer`(`id`) ON DELETE SET NULL;
 
 CREATE TABLE IF NOT EXISTS `order_header` (
                                 `id`  bigint NOT NULL AUTO_INCREMENT,
-                                levels INTEGER DEFAULT 1,
+                                levels INTEGER DEFAULT 0,
                                 `billing_address` varchar(30) DEFAULT NULL,
                                 `billing_zip_code` varchar(30) DEFAULT NULL,
                                 `shipping_address` varchar(30) DEFAULT NULL,

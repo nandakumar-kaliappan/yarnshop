@@ -11,6 +11,7 @@ import java.util.Set;
 @Builder
 @Getter
 @Setter
+@ToString(exclude = {"orderLines","orderApproval"})
 @EqualsAndHashCode(exclude = {"orderLines","orderApproval"})
 @AttributeOverrides({
         @AttributeOverride(
@@ -34,7 +35,9 @@ import java.util.Set;
 public class OrderHeader extends BaseEntity {
 
     
-    private int levels;
+    private Integer levels;
+
+    private Integer count;
 
     @Embedded
     private Address billingAddress;
@@ -47,13 +50,13 @@ public class OrderHeader extends BaseEntity {
     private String orderStatus;
 
     @OneToMany(mappedBy = "orderHeader",
-            cascade = {CascadeType.REMOVE,CascadeType.PERSIST}, fetch = FetchType.EAGER)
+            cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Set<OrderLine> orderLines;
 
     @ManyToOne
     private Customer customer;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "orderHeader")
+    @OneToOne(cascade = {CascadeType.ALL}, mappedBy = "orderHeader")
     private OrderApproval orderApproval;
 
     public void setOrderApproval(OrderApproval orderApproval){

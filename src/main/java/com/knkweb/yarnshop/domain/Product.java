@@ -12,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 @Entity
 public class Product extends BaseEntity {
     private String colour;

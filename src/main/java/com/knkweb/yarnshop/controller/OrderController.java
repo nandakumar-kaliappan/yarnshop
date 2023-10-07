@@ -123,8 +123,8 @@ public class OrderController {
         System.out.println("Order Re- placed");
         System.out.println(itemsData + " \n " + quantitiesData + " \n" + unitsData);
         System.out.println(quickOrderCommand);
-        System.out.println("__".repeat(50));
-        //orderHeaderService.saveOrUpdate(quickOrderCommand);
+        System.out.println("___".repeat(50));
+        orderHeaderService.saveOrUpdate(quickOrderCommand);
         return "redirect:/auth/orderslist";
     }
 

@@ -1,25 +1,84 @@
-body {
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.left-block, .right-block {
-    width: 45%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-ul {
-    list-style-type: none;
+/* Reset some default browser styles */
+body, ul, li {
+    margin: 0;
     padding: 0;
+    list-style: none;
 }
 
-li {
-    margin: 5px 0;
+/* Style the container */
+.container {
+    background-color: #dddddd;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+.item {
+    margin-right: 10px; /* Adds space to the right of each item */
+}
+
+/* Style the left block */
+.left-block {
+    background-color: #ddddd;
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #66666;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-list {
+    margin-top: 10px;
+}
+
+/* Style the right block */
+.right-block {
+    background-color: #ffffff;
+    width: 60%; /* Set your desired width */
+    height: 70%; /* Set your desired height */
+    padding: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+#selected-items {
+    margin-top: 10px;
+}
+
+.selected-item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.selected-item-container span {
+    flex: 1;
+}
+
+.selected-item-container input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.selected-item-container select {
+    width: 80px;
+    padding: 5px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
 }

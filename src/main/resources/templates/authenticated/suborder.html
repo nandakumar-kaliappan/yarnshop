@@ -1,124 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/suborder.css}">
-    <title>Item Selector</title>
+    meta charset="UTF-8">
+    <title>Quick order</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/suborder.css}">
 </head>
 <body>
-<div class="container">
-    <div class="left-block">
-        <h2>Select Items</h2>
-        <!--/*@thymesVar id="quickOrderCommand" type="com.knkweb.yarnshop.command.QuickOrderCommand"*/-->
-        <ul th:each="p: ${quickOrderCommand.itemsList}" class="item-list">
-            <!-- Items will be populated here by Thymeleaf -->
-            <li>
-                <input type="checkbox" th:text="${p}" th:value="${p}">
-            </li>
-            <!-- Add more items as needed -->
-        </ul>
+<header>
+    <div th:if="${topRole=='all'}">
+        <div th:replace="~{fragments/topsection::menubar-all}">
+            something
+        </div>
     </div>
-    <div class="right-block">
-        <h2>Selected Items</h2>
-        <ul id="selected-items">
-            <!-- Selected items will appear here -->
-        </ul>
+    <div th:if="${topRole=='admin'}">
+        <div  th:replace="~{fragments/topsection::menubar-admin}">
+            something
+        </div>
     </div>
-    <div>
-        <form id="itemForm1" th:object="${quickOrderCommand}"
-              th:action="@{/admin/quick-order/replace}" method="post">
-            <input type="hidden" th:field="*{itemsData}" id="itemsData" name="itemsData" value="">
-            <input type="hidden" th:field="*{quantitiesData}" id="quantitiesData"
-                   name="quantitiesData" value="">
-            <input type="hidden" th:field="*{unitsData}" id="unitsData" name="unitsData" value="">
-            <input type="hidden" th:field="*{levels}" id="levels" name="levels"
-                   value="*{levels}">
-            <input type="hidden" th:field="*{customerId}" id="customerId" name="customerId"
-                   value="*{customerId}">
-            <input type="hidden" th:field="*{orderHeaderId}" id="orderHeaderId" name="orderHeaderId"
-                   value="*{orderHeaderId}">
-            <input type="hidden" th:field="*{orderStatus}" id="orderStatus" name="orderStatus"
-                   value="*{orderStatus}">
-            <input type="submit" value="Submit">
-        </form>
+    <div th:if="${topRole=='customer'}" >
+        <div th:replace="~{fragments/topsection::menubar-customer}">
+            something
+        </div>
     </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const itemLists = document.querySelectorAll('.item-list');
-        const selectedItems = document.getElementById('selected-items');
-        const itemForm = document.getElementById("itemForm1");
+</header>
 
-        itemLists.forEach(itemList => {
-            itemList.addEventListener('change', function (event) {
-                if (event.target.type === 'checkbox') {
-                    const itemText = event.target.nextSibling.textContent.trim();
-                    const listItem = event.target.closest('li');
+<main>
+    <section class="scrollable">
+        <!-- Scrollable Content Goes Here -->
+        <div th:replace="~{fragments/suborder-form::suborder-items}">
+            something
+        </div>
+        <!-- Repeat as needed -->
+    </section>
 
-                    if (event.target.checked) {
-                        // Add selected item to the right block
-                        const itemContainer = document.createElement('li');
-                        itemContainer.classList.add('selected-item-container');
-
-                        // Item name
-                        const itemName = document.createElement('span');
-                        itemName.textContent = itemText;
-                        itemContainer.appendChild(itemName);
-
-                        // Quantity input
-                        const quantityInput = document.createElement('input');
-                        quantityInput.type = 'number';
-                        quantityInput.placeholder = 'Quantity';
-                        itemContainer.appendChild(quantityInput);
-
-                        // Unit selection
-                        const unitSelect = document.createElement('select');
-                        unitSelect.innerHTML =
-                            '<option value="kg">kg</option><option value="Each">pcs</option>';
-                        itemContainer.appendChild(unitSelect);
-
-                        selectedItems.appendChild(itemContainer);
-                    } else {
-                        // Remove item from the right block if unchecked
-                        const selectedContainers = selectedItems.getElementsByClassName('selected-item-container');
-                        for (let i = 0; i < selectedContainers.length; i++) {
-                            if (selectedContainers[i].querySelector('span').textContent.trim() === itemText) {
-                                selectedItems.removeChild(selectedContainers[i]);
-                                break;
-                            }
-                        }
-                    }
-                }
-            });
-        });
-        itemForm.addEventListener("submit", function (e) {
-            e.preventDefault(); // Prevent the form from submitting (for demonstration purposes)
-
-            // You can collect and process the item data here before submitting the form
-
-            var items = [];
-            var quantities = [];
-            var units = [];
-            const itemContainers = document.querySelectorAll(".selected-item-container");
-            itemContainers.forEach(container => {
-                const itemName = container.querySelector("span").textContent;
-                const quantity = container.querySelector("input").value;
-                const unit = container.querySelector("select").value;
-                items.push(itemName);
-                quantities.push(quantity);
-                units.push(unit);
-            });
-            document.getElementById("itemsData").value = JSON.stringify(items);
-            document.getElementById("quantitiesData").value = JSON.stringify(quantities);
-            document.getElementById("unitsData").value = JSON.stringify(units);
-            document.getElementById("levels").value = (parseInt(document.getElementById("levels").value) + 1).toString();
+</main>
 
 
-            console.log("Items:", items);
-            itemForm.submit();
-        });
-    });
-</script>
 </body>
 </html>

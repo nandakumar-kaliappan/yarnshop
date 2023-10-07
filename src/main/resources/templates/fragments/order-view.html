@@ -19,11 +19,15 @@
             <a class="button-link" href="#" th:href="'/auth/'+${+o.id}+'/suborder'">View Details</a>
             <br>
             <p>Placed on: <span o.createdDate>2023-10-07</span></p>
-<!--            <button th: class="view-details-button">Next Order</button>-->
+            <!--            <button th: class="view-details-button">Next Order</button>-->
             <br>
-            <p><span th:text="${#lists.size(o.orderLines)}">3</span> item(s)</p>
+            <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
+
+            <p><span th:text="${o.count}">3</span> item(s)</p>
+
             <p>Stage: <span th:text="${o.levels}">3</span> <span class="order-status"
-                    th:text="${o.orderStatus}">"progress"</span></p>
+                                                                 th:text="${o.orderStatus}">"progress"</span>
+            </p>
 
         </div>
     </div>

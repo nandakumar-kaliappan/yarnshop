@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = "orderHeader")
+@ToString(exclude = "orderHeader")
 @Entity
 public class OrderLine extends BaseEntity {
 
