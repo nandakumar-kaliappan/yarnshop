@@ -10,36 +10,21 @@
 
     <div class="order-block">
         <div class="order-header">
-            <div style="font-weight: bold;">Name: John Doe</div>
-            <div style="font-weight: bold;">Order ID: #12345</div>
+            <div style="font-weight: bold;">Name:
+                <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
+                <span th:text="${o.customer.customerName}">John Doe</span></div>
+            <div style="font-weight: bold;">Order ID: #<span th:text="${o.id}">12345</span></div>
         </div>
         <br>
         <div class="order-body">
-            <p>Ordered Date: 2023-10-07</p>
+            <p>Ordered Date: <span o.createdDate>2023-10-07</span></p>
             <br>
-            <p>Items Count: 3 <button class="toggle-items"></button></p>
-            <ul class="item-list">
-                <li>Product X</li>
-                <li>Product Y</li>
-            </ul>
+            <p>Items Count: <span th:text="${#lists.size(o.orderLines)}">3</span></p>
+            <p>Stage: <span th:text="${o.levels}">3</span> <span class="order-status"
+                    th:text="${o.orderStatus}">"progress"</span></p>
+
         </div>
     </div>
-    <script>
-        const toggleItems = document.querySelectorAll('.toggle-items');
-        toggleItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const itemList = item.parentElement.nextElementSibling;
-                if (itemList.style.display === 'none' || itemList.style.display === '') {
-                    itemList.style.display = 'block';
-                    item.style.backgroundColor = '#a0a0a0';
-                } else {
-                    itemList.style.display = 'none';
-                    item.style.backgroundColor = '#f0f0f0';
-                }
-            });
-        });
-    </script>
-
 </div>
 </body>
 </html>

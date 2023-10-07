@@ -48,3 +48,11 @@
     display: none;
     padding-left: 20px;
 }
+.order-status{
+
+    color: #45a049; /* Text color for the button */
+    padding: 5px;
+    border: #555555;
+    float: right;
+    /*border-radius: 5px;*/
+}
