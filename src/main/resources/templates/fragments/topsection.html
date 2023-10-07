@@ -21,9 +21,9 @@
     <ul class="menu-bar">
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#" th:href="@{/auth/orderlist}" >Orders</a></li>
+        <li><a href="#" th:href="@{/auth/orderslist}" >Orders</a></li>
         <li><a href="#">Settings</a></li>
-        <div class="end-button">
+        <div class="end-button"><span class="user-name" th:text="${username}"></span>
             <a th:href="@{/logout}" class="button-like-link">Sign Out</a>
         </div>
     </ul>
@@ -33,10 +33,10 @@
     <ul class="menu-bar">
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#" th:href="@{/auth/orderlist}" >Orders</a></li>
+        <li><a href="#" th:href="@{/auth/orderslist}" >Orders</a></li>
         <li><a href="#" th:href="@{/admin/quick-order}">Quick Order</a></li>
         <li><a href="#">Settings</a></li>
-        <div class="end-button">
+        <div class="end-button"><span class="user-name" th:text="${username}"></span>
             <a th:href="@{/logout}" class="button-like-link">Sign Out</a>
         </div>
     </ul>

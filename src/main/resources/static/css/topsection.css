@@ -61,3 +61,10 @@ ul.menu-bar li a:hover {
 .button-like-link:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+.user-name {
+    font-weight: lighter;
+    color: cornflowerblue;
+    padding: 10px 20px;
+    text-align: center;
+    float: left;
+}

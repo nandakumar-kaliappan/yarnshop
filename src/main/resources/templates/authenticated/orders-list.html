@@ -30,13 +30,20 @@
 <main>
     <section class="scrollable">
         <!-- Scrollable Content Goes Here -->
-        <div th:replace="~{fragments/order-view::order-view-block}">
-            something
+        <div th:if="${#lists.size(orders)}==0"> <br> <br><br><br>There is no order yet!</div>
+        <div th:if="${#lists.size(orders)}!=0">
+            <div
+                    th:replace="~{fragments/order-view::order-view-block}">
+                something
+            </div>
+        </div>
+        <br>
+        <div>size of order:</div>
+        <div th:text="${#lists.size(orders)}">
+            size
         </div>
         <!-- Repeat as needed -->
     </section>
-
-
 </main>
 
 </body>

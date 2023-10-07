@@ -24,14 +24,14 @@ public class UserControllerAuthorization {
     @RequestMapping({"/homepage"})
     public String homePage(Model model, @AuthenticationPrincipal UserDetails userDetails){
         model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("topRole",userService.findMaxRole(userDetails));//todo refactor this
+        model.addAttribute("topRole",userService.findMaxRole(userDetails));
         return "all/products";
     }
     @RequestMapping({"/admin/index","/admin"})
     public String welcomeAdmin(Model model, @AuthenticationPrincipal UserDetails userDetails){
         System.out.println("admin welcome");
         model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("topRole","admin"); //todo refactor this
+        model.addAttribute("topRole",userService.findMaxRole(userDetails));
         System.out.println(userDetails.getUsername());
         return "all/products";
     }
@@ -39,7 +39,7 @@ public class UserControllerAuthorization {
     public String aboutMeAdmin(Model model, @AuthenticationPrincipal UserDetails userDetails){
         System.out.println("admin aboutme");
         model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("topRole","admin"); //todo refactor this
+        model.addAttribute("topRole",userService.findMaxRole(userDetails));
         System.out.println(userDetails.getUsername());
         return "admin/aboutme";
     }
@@ -50,7 +50,7 @@ public class UserControllerAuthorization {
     public String welcomeCustomer(Model model, @AuthenticationPrincipal UserDetails userDetails){
         System.out.println("welcome customer");
         model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("topRole","customer");//todo refactor this
+        model.addAttribute("topRole",userService.findMaxRole(userDetails));
         System.out.println(userDetails.getUsername());
         return "all/products";
     }
@@ -59,7 +59,7 @@ public class UserControllerAuthorization {
     public String aboutMeCustomer(Model model, @AuthenticationPrincipal UserDetails userDetails){
         System.out.println("customer aboutme");
         model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("topRole","customer");//todo refactor this
+        model.addAttribute("topRole",userService.findMaxRole(userDetails));
         System.out.println(userDetails.getUsername());
         return "customer/aboutme";
     }
