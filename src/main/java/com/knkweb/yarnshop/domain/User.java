@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(exclude = {"authorities","customer"})
-@ToString(exclude = {"authorities"})
+@ToString(exclude = {"authorities","customer"})
 @Entity
 public class User extends BaseEntity{
 

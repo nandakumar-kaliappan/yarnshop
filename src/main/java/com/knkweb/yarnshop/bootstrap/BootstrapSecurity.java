@@ -45,35 +45,45 @@ public class BootstrapSecurity implements CommandLineRunner {
         userm.addAuthorities(Authority.builder().role("ADMIN").build());
         userm.addAuthorities(Authority.builder().role("MANAGER").build());
 
-        User users = User.builder().username("saitextiles").password("user").build();
-        users.addAuthorities(Authority.builder().role("CUSTOMER").build());
 
-        User userak = User.builder().username("akrgroups").password("user").build();
-        userak.addAuthorities(Authority.builder().role("CUSTOMER").build());
 
-        User uservp = User.builder().username("vpandco").password("user").build();
-        uservp.addAuthorities(Authority.builder().role("CUSTOMER").build());
-        
-        customerRepository.saveAndFlush(Customer.builder().customerName("VP & Co")
+        Customer bluePinkAp = Customer.builder().customerName("Blue Pink Apparels")
+                .address(Address.builder().address("kangeyam rd, Tiruppur").build())
+                .email("bluepink@gmail.com")
+                .phone("9960799152")
+                .build();
+        User userbp = User.builder().username("bluepinkap").password("user").build();
+        userbp.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        bluePinkAp.setUser(userbp);
+        customerRepository.saveAndFlush(bluePinkAp);
 
+        Customer vpandco = Customer.builder().customerName("VP & Co")
                 .address(Address.builder().address("Tiruppur").build())
                 .email("vp@gmail.com")
-                .phone("6800799150")
-                .build());
+                .phone("6800799250")
+                .build();
+        User uservp = User.builder().username("vpandco").password("user").build();
+        uservp.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        vpandco.setUser(uservp);
+        customerRepository.saveAndFlush(vpandco);
 
-        customerRepository.saveAndFlush(Customer.builder().customerName("Sai Textile")
-                .user(users)
+        Customer saiTextile = Customer.builder().customerName("Sai Textile")
                 .address(Address.builder().address("NBS, Tiruppur").build())
                 .email("sai@gmail.com")
-                .phone("9600799150")
-                .build());
+                .phone("9600799153")
+                .build();
+        User users = User.builder().username("saitextiles").password("user").build();
+        users.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        saiTextile.setUser(users);
+        customerRepository.saveAndFlush(saiTextile);
 
-        customerRepository.saveAndFlush(Customer.builder().customerName("AKR Groups")
-                .user(userak)
+
+        Customer akrGroups = Customer.builder().customerName("AKR Groups")
                 .address(Address.builder().address("PN rd, Tiruppur").build())
                 .email("akr@gmail.com")
-                .phone("8100799150")
-                .build());
+                .phone("8100799140")
+                .build();
+        customerRepository.saveAndFlush(akrGroups);
 
 
         userRepository.saveAndFlush(usera);

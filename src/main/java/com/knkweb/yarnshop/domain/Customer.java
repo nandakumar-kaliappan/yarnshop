@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"orders"})
+@ToString(exclude = {"orders","User"})
 @Builder
 @Entity
 public class Customer extends BaseEntity {

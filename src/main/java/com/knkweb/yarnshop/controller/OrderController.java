@@ -75,7 +75,10 @@ public class OrderController {
             System.out.println(user.getUsername());
             System.out.println("TopRole: "+topRole);
             System.out.println("Customer Requesting order");
+            System.out.println(user);
+            System.out.println(user.getCustomer());
             System.out.println("__".repeat(50));
+
             model.addAttribute("orders", orderHeaderService.findOrders(user.getCustomer()));
         } else {
             System.out.println("__".repeat(50));

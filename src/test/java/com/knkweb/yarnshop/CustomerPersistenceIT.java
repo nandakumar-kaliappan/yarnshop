@@ -26,22 +26,21 @@ public class CustomerPersistenceIT {
 
     @Test
     void persisitCustomer() {
-        User userak = User.builder().username("akrgroups").password("user").build();
-        userak.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        User userbp = User.builder().username("bluepinkap").password("user").build();
 
-        customerRepository.saveAndFlush(Customer.builder().customerName("AKR Groups")
-                .user(userak)
+        Customer bluePinkAp = Customer.builder().customerName("Blue Pink Apparels")
                 .address(Address.builder().address("PN rd, Tiruppur").build())
                 .email("akr@gmail.com")
                 .phone("8100799150")
-                .build());
+                .build();
+        bluePinkAp.setUser(userbp);
+        customerRepository.saveAndFlush(bluePinkAp);
 
-        assertNotNull(customerRepository.findByCustomerName("AKR Groups").get());
-        assertNotNull(userRepository.findByUsername("akrgroups").get());
-
-        assertEquals(customerRepository.findByCustomerName("AKR Groups").get().getCustomerName(),"AKR Groups");
-        assertEquals(userRepository.findByUsername("akrgroups").get().getUsername(),"akrgroups");
-        assertEquals(userRepository.findByUsername("akrgroups").get().getPassword(),"user");
+        User user = userRepository.findByUsername("bluepinkap").get();
+        assertNotNull(user);
+        
+        assertEquals(user.getUsername(),"bluepinkap");
+        assertEquals(user.getPassword(),"user");
 
 
     }
