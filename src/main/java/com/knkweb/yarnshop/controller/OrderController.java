@@ -110,6 +110,19 @@ public class OrderController {
 
         return "authenticated/suborder";
     }
+    @RequestMapping("/auth/{orderId}/closeoropen")
+    public String closeOrderRequest(Model model,
+                                    @AuthenticationPrincipal UserDetails userDetails
+            , @PathVariable String orderId) {
+
+        String topRole = userService.findMaxRole(userDetails);
+
+        System.out.println("__".repeat(50));
+        System.out.println("Close order request received for: " + orderId);
+        System.out.println("__".repeat(50));
+        orderHeaderService.closeOrder(Long.parseLong(orderId));
+        return "redirect:/auth/orderslist";
+    }
 
     @RequestMapping("/admin/quick-order/replace")
     public String replaceOrderRequest(Model model,

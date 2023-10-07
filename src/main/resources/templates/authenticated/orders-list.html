@@ -32,18 +32,25 @@
         <!-- Scrollable Content Goes Here -->
         <div th:if="${#lists.size(orders)}==0"> <br> <br><br><br>There is no order yet!</div>
         <!--/*@thymesVar id="orders" type="java.util.List<com.knkweb.yarnshop.domain.OrderHeader>"*/-->
-        <div th:each="o : ${orders}">
-            <div
-                    th:replace="~{fragments/order-view::order-view-block}">
-                something
+        <div th:if="${topRole=='customer'}">
+            <div th:each="o : ${orders}">
+                <div
+                        th:replace="~{fragments/order-view::order-view-block-customer}">
+                    something
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${topRole=='admin'}">
+            <div th:each="o : ${orders}">
+                <div
+                        th:replace="~{fragments/order-view::order-view-block-admin}">
+                    something
+                </div>
             </div>
         </div>
         <br>
 
-        <div>size of order:</div>
-        <div th:text="${#lists.size(orders)}">
-            size
-        </div>
         <!-- Repeat as needed -->
     </section>
 </main>

@@ -72,17 +72,42 @@
     background-color: #555;
 }
 /* CSS for the button-styled link */
-.button-link {
-    float: right;
+/* Common styles for buttons */
+.button-link,
+.button-link-close {
     display: inline-block;
     padding: 10px 20px;
     background-color: #5086b3;
     color: #fff;
-    text-decoration: none; /* Remove underlines */
+    text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+/* Styles for the primary button */
+.button-link {
+    background-color: #5086b3;
 }
 
 .button-link:hover {
     background-color: #555;
+    transform: scale(1.05); /* Add a subtle hover effect */
+}
+
+/* Styles for the secondary button (close) */
+.button-link-close {
+    background-color: #0c92ec;
+}
+
+.button-link-close:hover {
+    background-color: #555;
+    transform: scale(1.05); /* Add a subtle hover effect */
+}
+
+/* Button group container styles */
+.button-group {
+    flex: 1;
+    float: right;
 }

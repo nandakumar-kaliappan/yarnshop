@@ -79,4 +79,18 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
         Optional<OrderHeader> orderHeaderOptional = orderHeaderRepository.findById(orderId);
         return objToCmdConverter.convert(orderHeaderOptional.orElse(null));
     }
+
+    @Override
+    @Transactional
+    public void closeOrder(long orderId) {
+        Optional<OrderHeader> orderHeaderOptional = orderHeaderRepository.findById(orderId);
+        OrderHeader orderHeader = orderHeaderOptional.get();
+        if(orderHeader.getOrderStatus().equals("closed")){
+            orderHeader.setOrderStatus("in_progress");
+        }else{
+            orderHeader.setOrderStatus("closed");
+        }
+
+        orderHeaderRepository.save(orderHeader);
+    }
 }

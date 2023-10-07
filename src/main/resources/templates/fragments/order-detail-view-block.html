@@ -19,7 +19,7 @@
             <div th:if="${o.orderStatus}=='in_progress'">
                 <div class="button-group">
                     <a class="button-link" href="#"
-                                             th:href="'/auth/'+${o.id}+'/suborder'">View Details</a>
+                       th:href="'/auth/'+${o.id}+'/suborder'">View Details</a>
                     <a class="button-link-close" href="#"
                        th:href="'/auth/'+${o.id}+'/closeoropen'">Close</a>
                 </div>
