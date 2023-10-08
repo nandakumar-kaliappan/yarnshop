@@ -1,6 +1,7 @@
 package com.knkweb.yarnshop.controller;
 
 import com.knkweb.yarnshop.command.QuickOrderCommand;
+import com.knkweb.yarnshop.domain.OrderHeader;
 import com.knkweb.yarnshop.domain.User;
 import com.knkweb.yarnshop.repositories.CustomerRepository;
 import com.knkweb.yarnshop.repositories.ProductRepository;
@@ -122,6 +123,25 @@ public class OrderController {
         System.out.println("__".repeat(50));
         orderHeaderService.closeOrder(Long.parseLong(orderId));
         return "redirect:/auth/orderslist";
+    }
+    @RequestMapping("/auth/auth/{orderId}/viewdetail")
+    public String viewOrderDetail(Model model,
+                                    @AuthenticationPrincipal UserDetails userDetails
+            , @PathVariable String orderId) {
+        String topRole = userService.findMaxRole(userDetails);
+        OrderHeader orderHeader = orderHeaderService.findOrderByOrderId(Long.parseLong(orderId));
+
+        System.out.println("__".repeat(50));
+        System.out.println("View detail - request received for: " + orderId);
+        System.out.println("order passed to form:");
+        System.out.println(orderHeader);
+        System.out.println("__.".repeat(50));
+        model.addAttribute("topRole", topRole);
+        model.addAttribute("username", userDetails.getUsername());
+        model.addAttribute("o", orderHeader);
+
+        return "authenticated/vieworderdetail";
+
     }
 
     @RequestMapping("/admin/quick-order/replace")

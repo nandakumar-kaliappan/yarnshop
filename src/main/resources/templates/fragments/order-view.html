@@ -13,13 +13,16 @@
             <div style="font-weight: bold;">Name:
                 <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
                 <span th:text="${o.customer.customerName}">John Doe</span></div>
-            <div style="font-weight: bold;">Order ID: #<span th:text="${o.id}">12345</span></div>
+            <div style="font-weight: bold;">Order ID: #<a style="color: white;"
+                                                          th:href="'auth/'+${o.id}+'/viewdetail'"
+                                                          th:text="${o.id}">12345
+            </a></div>
         </div>
         <div class="order-body">
             <div th:if="${o.orderStatus}=='in_progress'">
                 <div class="button-group">
                     <a class="button-link" href="#"
-                                             th:href="'/auth/'+${o.id}+'/suborder'">View Details</a>
+                                             th:href="'/auth/'+${o.id}+'/suborder'">View -></a>
                     <a class="button-link-close" href="#"
                        th:href="'/auth/'+${o.id}+'/closeoropen'">Close</a>
                 </div>
@@ -52,13 +55,15 @@
             <div style="font-weight: bold;">Name:
                 <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
                 <span th:text="${o.customer.customerName}">John Doe</span></div>
-            <div style="font-weight: bold;">Order ID: #<span th:text="${o.id}">12345</span></div>
+            <div style="font-weight: bold;">Order ID: #<a style="color: white;"
+                                                          th:href="'auth/'+${o.id}+'/viewdetail'"
+                                                           th:text="${o.id}">12345</a></div>
         </div>
         <div class="order-body">
             <div th:if="${o.orderStatus}=='in_progress'">
                 <div class="button-group">
                     <a class="button-link" href="#"
-                       th:href="'/auth/'+${o.id}+'/suborder'">View Details</a>
+                       th:href="'/auth/'+${o.id}+'/suborder'">View -></a>
                 </div>
             </div>
 

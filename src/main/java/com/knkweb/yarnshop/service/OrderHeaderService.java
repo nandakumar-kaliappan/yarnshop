@@ -17,4 +17,6 @@ public interface OrderHeaderService {
     QuickOrderCommand findProductsOfLastStage(long orderId);
 
     void closeOrder(long orderId);
+
+    OrderHeader findOrderByOrderId(long parseLong);
 }

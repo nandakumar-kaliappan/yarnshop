@@ -93,4 +93,10 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
 
         orderHeaderRepository.save(orderHeader);
     }
+
+    @Override
+    public OrderHeader findOrderByOrderId(long orderId) {
+        Optional<OrderHeader> orderHeaderOptional = orderHeaderRepository.findById(orderId);
+        return orderHeaderOptional.get();
+    }
 }
