@@ -1,13 +1,10 @@
 package com.knkweb.yarnshop.domain;
 
-import com.sun.istack.NotNull;
-import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -18,7 +15,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"authorities","customer"})
 @ToString(exclude = {"authorities","customer"})
 @Entity
-public class User extends BaseEntity{
+public class User extends BaseEntity implements UserDetails {
 
     private String username;
     private String password;
@@ -41,4 +38,18 @@ public class User extends BaseEntity{
         this.authorities.add(authority);
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 }
