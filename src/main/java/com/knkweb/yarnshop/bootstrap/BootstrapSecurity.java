@@ -39,11 +39,11 @@ public class BootstrapSecurity implements CommandLineRunner {
     }
     private void bootstrapData() {
         User usera = User.builder().username("admin").password("ad").build();
-        usera.addAuthorities(Authority.builder().role("ADMIN").build());
+        usera.addAuthorities(Authority.builder().role(Role.ROLE_ADMIN).build());
 
         User userm = User.builder().username("manager").password("ma").build();
-        userm.addAuthorities(Authority.builder().role("ADMIN").build());
-        userm.addAuthorities(Authority.builder().role("MANAGER").build());
+        userm.addAuthorities(Authority.builder().role(Role.ROLE_ADMIN).build());
+        userm.addAuthorities(Authority.builder().role(Role.ROLE_MANAGER).build());
 
 
 
@@ -53,7 +53,7 @@ public class BootstrapSecurity implements CommandLineRunner {
                 .phone("9960799152")
                 .build();
         User userbp = User.builder().username("bluepinkap").password("user").build();
-        userbp.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        userbp.addAuthorities(Authority.builder().role(Role.ROLE_CUSTOMER).build());
         bluePinkAp.setUser(userbp);
         customerRepository.saveAndFlush(bluePinkAp);
 
@@ -63,7 +63,7 @@ public class BootstrapSecurity implements CommandLineRunner {
                 .phone("6800799250")
                 .build();
         User uservp = User.builder().username("vpandco").password("user").build();
-        uservp.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        uservp.addAuthorities(Authority.builder().role(Role.ROLE_CUSTOMER).build());
         vpandco.setUser(uservp);
         customerRepository.saveAndFlush(vpandco);
 
@@ -73,7 +73,7 @@ public class BootstrapSecurity implements CommandLineRunner {
                 .phone("9600799153")
                 .build();
         User users = User.builder().username("saitextiles").password("user").build();
-        users.addAuthorities(Authority.builder().role("CUSTOMER").build());
+        users.addAuthorities(Authority.builder().role(Role.ROLE_CUSTOMER).build());
         saiTextile.setUser(users);
         customerRepository.saveAndFlush(saiTextile);
 

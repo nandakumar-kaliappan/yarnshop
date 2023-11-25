@@ -35,9 +35,9 @@ public class SecurityConfiguration {
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeRequests()
-                    .antMatchers("/admin/**").hasAuthority("ADMIN")
+                    .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                     .antMatchers("/customer/index").authenticated()
-                    .antMatchers("/customer/**").hasAnyAuthority("ADMIN", "CUSTOMER")
+                    .antMatchers("/customer/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_CUSTOMER")
                     .antMatchers("/homepage").authenticated()
                     .antMatchers("/auth/**").authenticated()
                     .antMatchers("/").permitAll()

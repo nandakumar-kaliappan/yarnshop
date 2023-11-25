@@ -1,6 +1,7 @@
 package com.knkweb.yarnshop;
 
 import com.knkweb.yarnshop.domain.Authority;
+import com.knkweb.yarnshop.domain.Role;
 import com.knkweb.yarnshop.domain.User;
 
 import com.knkweb.yarnshop.repositories.UserRepository;
@@ -29,8 +30,8 @@ public class EntitiyInDatabaseIntegrationTest {
     String user1Name = "TestUser1";
     String user2Name = "TestUser2";
     String userUnsaved = "TestUser3";
-    String role1 ="Admin";
-    String role2 = "Customer";
+    Role role1 =Role.ROLE_ADMIN;
+    Role role2 = Role.ROLE_CUSTOMER;
 
     @BeforeEach
     void setUp() {

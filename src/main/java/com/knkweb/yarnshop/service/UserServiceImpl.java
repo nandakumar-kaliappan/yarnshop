@@ -1,5 +1,6 @@
 package com.knkweb.yarnshop.service;
 
+import com.knkweb.yarnshop.domain.Role;
 import com.knkweb.yarnshop.domain.User;
 import com.knkweb.yarnshop.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,20 +21,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public String findMaxRole(UserDetails userDetails) {//todo: improvement needed
         for(GrantedAuthority authority: userDetails.getAuthorities()){
-            if(authority.getAuthority().equals("ADMIN")){
+            if(authority.getAuthority().equals(Role.ROLE_ADMIN.toString())){
                 return "admin";
             }
         }
         for(GrantedAuthority authority: userDetails.getAuthorities()){
-            if(authority.getAuthority().equals("MANAGER")){
+            if(authority.getAuthority().equals(Role.ROLE_MANAGER.toString())){
                 return "admin";
             }
         }
         for(GrantedAuthority authority: userDetails.getAuthorities()){
-            if(authority.getAuthority().equals("CUSTOMER")){
+            if(authority.getAuthority().equals(Role.ROLE_CUSTOMER.toString())){
                 return "customer";
             }
         }
+
         return "all";
     }
 

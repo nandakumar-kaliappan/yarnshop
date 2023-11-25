@@ -1,6 +1,7 @@
 package com.knkweb.yarnshop.controller;
 
 import com.knkweb.yarnshop.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Slf4j
 public class UserControllerAuthorization {
     private final UserService userService;
 
@@ -23,6 +25,7 @@ public class UserControllerAuthorization {
     }
     @RequestMapping({"/homepage"})
     public String homePage(Model model, @AuthenticationPrincipal UserDetails userDetails){
+        log.debug("home page access with max role : "+ userService.findMaxRole(userDetails));
         model.addAttribute("username",userDetails.getUsername());
         model.addAttribute("topRole",userService.findMaxRole(userDetails));
         return "all/products";

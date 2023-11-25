@@ -18,9 +18,6 @@ class MyUserDetailTest {
         userDetails = new User();
         assertNotNull(userDetails);
         assertEquals(userDetails.getPassword(), null);
-        //assertEquals(userDetails.getAuthorities().iterator().next().getAuthority(),"CUSTOMER");
-        //System.out.println(userDetails.getAuthorities().iterator().next().getAuthority());
-
     }
 
 
