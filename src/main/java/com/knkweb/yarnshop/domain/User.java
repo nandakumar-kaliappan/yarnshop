@@ -2,8 +2,10 @@ package com.knkweb.yarnshop.domain;
 
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +39,12 @@ public class User extends BaseEntity implements UserDetails {
         authority.setUser(this);
         this.authorities.add(authority);
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(){
+        return authorities;
+    }
+
 
     @Override
     public boolean isAccountNonExpired() {

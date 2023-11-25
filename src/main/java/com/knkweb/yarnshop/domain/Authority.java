@@ -1,6 +1,7 @@
 package com.knkweb.yarnshop.domain;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,9 +16,14 @@ import javax.persistence.ManyToOne;
 @EqualsAndHashCode
 @ToString
 @Entity
-public class Authority extends BaseEntity{
+public class Authority extends BaseEntity implements GrantedAuthority {
 
     @ManyToOne
     private User user;
     private String role;
+
+    @Override
+    public String getAuthority() {
+        return role;
+    }
 }

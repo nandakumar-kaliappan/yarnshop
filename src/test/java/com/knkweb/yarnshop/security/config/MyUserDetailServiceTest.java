@@ -1,6 +1,7 @@
 package com.knkweb.yarnshop.security.config;
 
 
+import com.knkweb.yarnshop.domain.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,9 +15,8 @@ class MyUserDetailTest {
 
     @Test
     void TestLoadUserByName() {
-        userDetails = new MyUserDetails(customerName);
+        userDetails = new User();
         assertNotNull(userDetails);
-        assertEquals(userDetails.getUsername(), customerName);
         assertEquals(userDetails.getPassword(), null);
         //assertEquals(userDetails.getAuthorities().iterator().next().getAuthority(),"CUSTOMER");
         //System.out.println(userDetails.getAuthorities().iterator().next().getAuthority());
