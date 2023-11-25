@@ -43,6 +43,10 @@ public class SecurityConfiguration {
                     .antMatchers("/").permitAll()
                 .and()
                     .formLogin()
+                    .defaultSuccessUrl("/homepage")
+                .and()
+                    .logout()
+                    .logoutSuccessUrl("/")
                 .and()
                 .build();
 
