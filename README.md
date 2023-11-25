@@ -65,6 +65,7 @@ The database schema will include tables for products, users, orders, and related
 - [x] Implement user registration and authentication.
 - [x] Develop product catalog and cart management.
 - [x] Implement SSR with Thymeleaf.
+- [ ] Improve Features
 - [ ] Conduct testing and quality assurance.
 - [ ] Plan for deployment and scaling.
 - [ ] Document code and application usage.
