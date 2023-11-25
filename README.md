@@ -38,11 +38,8 @@ Tiruppur is known as the knitwear capital of India, accounting for 90% of India'
 -  **Database:** ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) 
 -  **Frontend:** ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 -  **Authentication:** ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)
--  **Methodology:** [Agile](#methodology)
 
-## Methodology
 
-The project will follow Agile methodology to ensure flexibility, collaboration, and iterative development. It will involve short development cycles with regular feedback and continuous improvement.
 
 ## Features
 
@@ -64,11 +61,10 @@ The database schema will include tables for products, users, orders, and related
 - [x] Design database schema.
 - [x] Set up development environment.
 - [x] Begin backend development.
-- [ ] Develop Order managemant.
-- [ ] Implement user registration and authentication.
-- [ ] Develop product catalog and cart management.
-- [ ] Integrate payment processing.
-- [ ] Implement SSR with Thymeleaf.
+- [x] Develop Order managemant.
+- [x] Implement user registration and authentication.
+- [x] Develop product catalog and cart management.
+- [x] Implement SSR with Thymeleaf.
 - [ ] Conduct testing and quality assurance.
 - [ ] Plan for deployment and scaling.
 - [ ] Document code and application usage.
