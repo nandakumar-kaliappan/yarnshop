@@ -29,21 +29,38 @@ ul.menu-bar li a:hover {
 /* Style for the final button */
 .end-button {
     float: right;
-    margin-right: 10px;
-    margin-top: 8px;
+    display: flex; /* Use flexbox for nested items */
+    align-items: center; /* Center items vertically */
 }
 
-.end-button button {
-    background-color: #4CAF50; /* Button background color */
-    color: white; /* Button text color */
+.logout-form {
+    /* Add any styling for the form container here */
+}
+
+.user-name {
+    font-weight: lighter;
+    color: cornflowerblue;
     padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    text-align: center;
+    float: left;
 }
 
-.end-button button:hover {
-    background-color: #45a049; /* Darker green on hover */
+.button {
+    /* Your button styles */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Additional hover effect */
+.button:hover {
+    background-color: #0056b3;
 }
 .button-like-link {
     font-weight: bold;
@@ -60,11 +77,4 @@ ul.menu-bar li a:hover {
 
 .button-like-link:hover {
     background-color: #0056b3; /* Darker blue on hover */
-}
-.user-name {
-    font-weight: lighter;
-    color: cornflowerblue;
-    padding: 10px 20px;
-    text-align: center;
-    float: left;
 }

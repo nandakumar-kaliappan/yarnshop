@@ -1,0 +1,46 @@
+/* login-styles.css */
+.login {
+
+    max-width: 400px; /* Example width */
+    margin: 0 auto; /* Center the login section */
+    padding: 20px; /* Example padding */
+    background-color: #f9f9f9; /* Example background color */
+    border-radius: 8px; /* Example border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+}
+
+.login-title {
+    font-size: 24px; /* Example header font size */
+    margin-bottom: 20px; /* Example margin below the header */
+}
+
+.login-error {
+    color: red; /* Example color for error message */
+    margin-bottom: 15px; /* Example margin below the error message */
+}
+
+.login-form label {
+    font-weight: bold; /* Example font weight for labels */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="submit"] {
+    margin-bottom: 10px; /* Example margin between input fields */
+    padding: 8px; /* Example padding for input fields */
+    border-radius: 4px; /* Example border radius for input fields */
+    border: 1px solid #ccc; /* Example border color */
+    width: 100%; /* Example width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.login-button {
+    background-color: #007bff; /* Example background color for submit button */
+    color: white; /* Example text color for submit button */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.login-button:hover {
+    background-color: #0056b3; /* Example hover background color */
+}

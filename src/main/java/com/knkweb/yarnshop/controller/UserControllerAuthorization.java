@@ -23,6 +23,14 @@ public class UserControllerAuthorization {
         model.addAttribute("topRole","all");//todo refactor this
         return "all/products";
     }
+
+    @RequestMapping("/login")
+    public String loginPage(Model model){
+        model.addAttribute("username",null);
+        model.addAttribute("topRole","all");//todo refactor this
+        return "all/login";
+    }
+
     @RequestMapping({"/homepage"})
     public String homePage(Model model, @AuthenticationPrincipal UserDetails userDetails){
         log.debug("home page access with max role : "+ userService.findMaxRole(userDetails));
