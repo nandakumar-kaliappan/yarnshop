@@ -24,6 +24,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
+import java.util.List;
+
+import static org.hamcrest.Matchers.isA;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isNull;
 
@@ -48,9 +51,10 @@ class UserControllerAuthorizationTest {
         System.out.println("test begins");
         mockMvc.perform(MockMvcRequestBuilders.get("/admin/admin"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("admin/aboutme"))
+                .andExpect(MockMvcResultMatchers.view().name("admin/admin"))
                 .andExpect(MockMvcResultMatchers.model().attribute("username","manager"))
-                .andExpect(MockMvcResultMatchers.model().attribute("topRole","admin"));
+                .andExpect(MockMvcResultMatchers.model().attribute("topRole","admin"))
+                .andExpect(MockMvcResultMatchers.model().attribute("customers",isA(List.class)));
     }
 
     @Test
@@ -84,6 +88,7 @@ class UserControllerAuthorizationTest {
                 .andExpect(MockMvcResultMatchers.model().attribute("username","manager"))
                 .andExpect(MockMvcResultMatchers.model().attribute("topRole","admin"));
     }
+
     @Test
     @WithMockUser(username = "manager", roles = "CUSTOMER")
     void welcomeAdminWithCustomer() throws Exception {

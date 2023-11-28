@@ -62,7 +62,7 @@ public class UserControllerAuthorization {
         model.addAttribute("username",userDetails.getUsername());
         model.addAttribute("topRole",userService.findMaxRole(userDetails));
         System.out.println(userDetails.getUsername());
-        return "admin/aboutme";
+        return "admin/admin";
     }
 
 
