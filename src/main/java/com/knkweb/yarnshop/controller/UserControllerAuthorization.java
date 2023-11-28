@@ -1,5 +1,6 @@
 package com.knkweb.yarnshop.controller;
 
+import com.knkweb.yarnshop.service.CustomerService;
 import com.knkweb.yarnshop.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class UserControllerAuthorization {
     private final UserService userService;
+    private final CustomerService customerService;
 
-    public UserControllerAuthorization(UserService userService) {
+    public UserControllerAuthorization(UserService userService, CustomerService customerService) {
         this.userService = userService;
+        this.customerService = customerService;
     }
 
     @RequestMapping({"/","/index","/index.html"})
@@ -61,6 +64,7 @@ public class UserControllerAuthorization {
         System.out.println("admin page");
         model.addAttribute("username",userDetails.getUsername());
         model.addAttribute("topRole",userService.findMaxRole(userDetails));
+        model.addAttribute("customers",customerService.findAll());
         System.out.println(userDetails.getUsername());
         return "admin/admin";
     }

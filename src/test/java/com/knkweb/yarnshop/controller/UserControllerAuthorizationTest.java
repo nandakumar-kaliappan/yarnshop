@@ -3,9 +3,11 @@ package com.knkweb.yarnshop.controller;
 import com.knkweb.yarnshop.domain.User;
 import com.knkweb.yarnshop.service.UserService;
 import com.knkweb.yarnshop.service.UserServiceImpl;
+import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -24,8 +26,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isNull;
@@ -49,12 +55,14 @@ class UserControllerAuthorizationTest {
     @WithMockUser(username = "manager", roles = "ADMIN")
     void adminstrationAdminWithAdmin() throws Exception {
         System.out.println("test begins");
+        ArgumentCaptor<List> argumentCaptor = ArgumentCaptor.forClass(List.class);
         mockMvc.perform(MockMvcRequestBuilders.get("/admin/admin"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("admin/admin"))
                 .andExpect(MockMvcResultMatchers.model().attribute("username","manager"))
                 .andExpect(MockMvcResultMatchers.model().attribute("topRole","admin"))
-                .andExpect(MockMvcResultMatchers.model().attribute("customers",isA(List.class)));
+                .andExpect(MockMvcResultMatchers.model().attribute("customers", isA(ArrayList.class)));
+
     }
 
     @Test

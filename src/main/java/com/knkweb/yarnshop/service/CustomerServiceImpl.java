@@ -4,6 +4,7 @@ import com.knkweb.yarnshop.domain.Customer;
 import com.knkweb.yarnshop.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,10 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Optional<Customer> customerOptional = customerRepository.findById(customer);
         return customerOptional.orElse(null);
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
     }
 }
