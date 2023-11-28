@@ -1,0 +1,21 @@
+.customer-container{
+    display: flex;
+    justify-content: center;
+}
+
+/* Add boundaries and shadow to the customers elements */
+.customers {
+
+    width: 80%;
+    border: 1px solid #ccc; /* Example border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example shadow */
+    padding: 10px; /* Adjust padding as needed */
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+/* Make customer-existing scrollable */
+.customer-existing {
+    max-height: 600px; /* Example max height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Add padding as needed */
+}
