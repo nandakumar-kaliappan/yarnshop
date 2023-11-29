@@ -1,5 +1,7 @@
 package com.knkweb.yarnshop.service;
 
+import com.knkweb.yarnshop.command.CustomerCommand;
+import com.knkweb.yarnshop.converter.CustomerCommandToCustomer;
 import com.knkweb.yarnshop.domain.Customer;
 import com.knkweb.yarnshop.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -10,9 +12,12 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
+    private final CustomerCommandToCustomer customerCommandToCustomer;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository,
+                               CustomerCommandToCustomer customerCommandToCustomer) {
         this.customerRepository = customerRepository;
+        this.customerCommandToCustomer = customerCommandToCustomer;
     }
 
     @Override
@@ -27,5 +32,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
+    }
+
+    @Override
+    public void saveOrUpdate(CustomerCommand customerCommand) {
+
+        customerRepository.saveAndFlush(customerCommandToCustomer.convert(customerCommand));
     }
 }

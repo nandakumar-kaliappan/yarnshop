@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order List</title>
+    <title>Administration Control</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/customer-view.css}">
@@ -17,11 +17,11 @@
         </div>
     </div>
     <div th:if="${topRole=='admin'}">
-        <div  th:replace="~{fragments/topsection::menubar-admin}">
+        <div th:replace="~{fragments/topsection::menubar-admin}">
             something
         </div>
     </div>
-    <div th:if="${topRole=='customer'}" >
+    <div th:if="${topRole=='customer'}">
         <div th:replace="~{fragments/topsection::menubar-customer}">
             something
         </div>
@@ -35,21 +35,30 @@
         <!--/*@thymesVar id="orders" type="java.util.List<com.knkweb.yarnshop.domain.Customer>"*/-->
         <div class="customer-container">
             <div class="customers">
-                <span style="font-weight: bold; padding-left: 140px;"> Customers:</span>
-                <div class="customer-existing">
-                    <div th:if="${#lists.size(customers)}==0"> There is no customer yet!</div>
+                <span style="font-weight: bold; font-size: large; padding-left: 20px;  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;">
+                    Customers</span>
+                <div class=" customer-existing">
+                <div th:if="${#lists.size(customers)}==0"> There is no customer yet!</div>
 
-                    <div th:if="${topRole=='admin'}">
+                <div th:if="${topRole=='admin'}">
 
-                        <div th:each="customer : ${customers}">
-                            <div th:replace="~{fragments/customer-view::customer-view-block-admin}">
-                                something
-                            </div>
+                    <div th:each="customer : ${customers}">
+                        <div th:replace="~{fragments/customer-view::customer-view-block-admin}">
+                            something
                         </div>
                     </div>
-                    <br>
                 </div>
+                <br>
             </div>
+            <div class="customer-add">
+                <a class="customer-button-link" href="#"
+                   th:href="@{/admin/customer/new}">Add New</a>
+
+            </div>
+        </div>
         </div>
 
         <!-- Repeat as needed -->

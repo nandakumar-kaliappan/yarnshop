@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Interactive Form with Dynamic Options</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/quick-order-form.css}">
+</head>
+<body>
+<div th:fragment="add-customer (customerCommand)">
+    <div class="customer-form-container">
+        <span th:text="${customerCommand.message}"> some message</span>
+
+        <form id="customer-form" th:object="${customerCommand}" th:action="@{/admin/customer/new}"
+              method="post">
+            <div>
+                <label for="customerName">Customer Name:</label>
+                <input type="text" th:field="*{customerName}" id="customerName" name="customerName"
+                       value="">
+            </div>
+            <div>
+                <label for="userName">Username:</label>
+                <input type="text" th:field="*{userName}" id="userName" name="userName" value="">
+            </div>
+            <div>
+                <label for="address">Address:</label>
+                <input type="text" th:field="*{address}" id="address" name="address" value="">
+            </div>
+            <div>
+                <label for="phone">Phone:</label>
+                <input type="tel" th:field="*{phone}" id="phone" name="phone" value="">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" th:field="*{email}" id="email" name="email" value="">
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+
+        <!--/*@thymesVar id="customerCommand" type="com.knkweb.yarnshop.command.CustomerCommand"*/-->
+
+
+        <!--        <label for="customerInput" th:if="${customerId}==null">Select the customer</label>-->
+        <!--        <input type="text"  th:if="${customerId}==null" id="customerInput" list="customerOptions">-->
+        <!--        <datalist id="customerOptions" th:if="${customerId}==null">-->
+        <!--            &lt;!&ndash;/*@thymesVar id="customers" type="java.util.ArrayList<com.knkweb.yarnshop.domain-->
+        <!--            .Customer>"*/&ndash;&gt;-->
+        <!--            <option  th:each="c:${customers}" th:value="${c.id}"-->
+        <!--                     th:text="'Name: '+${c.customerName}+', Ph: '+${c.phone}"></option>-->
+        <!--        </datalist>-->
+        <!--        <ul id="Customer Details"></ul>-->
+        <!--        <h2 th:unless="${customerId}==null">Customer ID:-->
+        <!--            <span th:text="${customerId}">id value</span></h2>-->
+        <!--        <label for="itemInput">Select the colour references</label>-->
+        <!--        <input type="text" id="itemInput" list="itemOptions">-->
+        <!--        <datalist id="itemOptions">-->
+        <!--            <option th:each="p:${products}" th:value="${p.description}"-->
+        <!--                    th:text="${p.description}"></option>-->
+        <!--        </datalist>-->
+
+        <!--        <button type="button" id="addItemButton">Add Item</button>-->
+        <!--        <ul id="itemList"></ul>-->
+
+        <!--        <form id="itemForm1" th:object="${quickOrderCommand}"-->
+        <!--              th:action="@{/admin/quick-order/place}" method="post">-->
+        <!--            <input type="hidden" th:field="*{itemsData}" id="itemsData" name="itemsData"  value="">-->
+        <!--            <input type="hidden" th:field="*{quantitiesData}" id="quantitiesData" name="quantitiesData" value="">-->
+        <!--            <input type="hidden" th:field="*{unitsData}" id="unitsData" name="unitsData" value="">-->
+        <!--            <input type="hidden" th:field="*{levels}" id="levels" name="levels"-->
+        <!--                   value="*{levels}">-->
+        <!--            <input type="hidden" th:field="*{customerId}" id="customerId" name="customerId" value="*{customerId}">-->
+        <!--            <input type="submit"  value="Submit">-->
+        <!--        </form>-->
+        <!--    </div>-->
+        <!--    <script>-->
+        <!--        document.addEventListener("DOMContentLoaded", function () {-->
+        <!--            const itemForm = document.getElementById("itemForm1");-->
+        <!--            const itemInput = document.getElementById("itemInput");-->
+        <!--            const addItemButton = document.getElementById("addItemButton");-->
+        <!--            const itemList = document.getElementById("itemList");-->
+
+        <!--            const selectedItems = new Set();-->
+
+        <!--            addItemButton.addEventListener("click", function () {-->
+        <!--                const selectedItem = itemInput.value.trim();-->
+        <!--                if (selectedItem && !selectedItems.has(selectedItem)) {-->
+        <!--                    selectedItems.add(selectedItem);-->
+        <!--                    // Create the item container-->
+        <!--                    const itemContainer = document.createElement("div");-->
+        <!--                    itemContainer.classList.add("item-container");-->
+
+        <!--                    // Create the item name element-->
+        <!--                    const itemName = document.createElement("span");-->
+        <!--                    itemName.textContent = selectedItem;-->
+        <!--                    itemContainer.appendChild(itemName);-->
+
+        <!--                    // Create the quantity input-->
+        <!--                    const quantityInput = document.createElement("input");-->
+        <!--                    quantityInput.type = "number";-->
+        <!--                    quantityInput.value = 1;-->
+        <!--                    quantityInput.min = 1;-->
+        <!--                    quantityInput.placeholder = "Qty";-->
+        <!--                    itemContainer.appendChild(quantityInput);-->
+
+        <!--                    // Create the unit dropdown-->
+        <!--                    const unitSelect = document.createElement("select");-->
+        <!--                    const units = ["Kg", "Each"]; // Customize the units as needed-->
+        <!--                    units.forEach(unit => {-->
+        <!--                        const option = document.createElement("option");-->
+        <!--                        option.value = unit;-->
+        <!--                        option.textContent = unit;-->
+        <!--                        unitSelect.appendChild(option);-->
+        <!--                    });-->
+        <!--                    itemContainer.appendChild(unitSelect);-->
+
+        <!--                    // Create the remove button-->
+        <!--                    const removeButton = document.createElement("button");-->
+        <!--                    removeButton.textContent = "Remove";-->
+        <!--                    removeButton.addEventListener("click", function () {-->
+        <!--                        itemContainer.remove();-->
+        <!--                        selectedItems.delete(selectedItem);-->
+        <!--                    });-->
+        <!--                    itemContainer.appendChild(removeButton);-->
+
+        <!--                    // Add the item container to the list-->
+        <!--                    itemList.appendChild(itemContainer);-->
+
+        <!--                    // Clear the input field-->
+        <!--                    itemInput.value = "";-->
+        <!--                }-->
+        <!--            });-->
+
+        <!--            itemForm.addEventListener("submit", function (e) {-->
+        <!--                e.preventDefault(); // Prevent the form from submitting (for demonstration purposes)-->
+
+        <!--                // You can collect and process the item data here before submitting the form-->
+
+        <!--                var items = [];-->
+        <!--                var quantities = [];-->
+        <!--                var units = [];-->
+        <!--                const itemContainers = document.querySelectorAll(".item-container");-->
+        <!--                itemContainers.forEach(container => {-->
+        <!--                    const itemName = container.querySelector("span").textContent;-->
+        <!--                    const quantity = container.querySelector("input").value;-->
+        <!--                    const unit = container.querySelector("select").value;-->
+        <!--                    items.push(itemName);-->
+        <!--                    quantities.push(quantity);-->
+        <!--                    units.push(unit);-->
+        <!--                });-->
+        <!--                document.getElementById("itemsData").value = JSON.stringify(items);-->
+        <!--                document.getElementById("quantitiesData").value = JSON.stringify(quantities);-->
+        <!--                document.getElementById("unitsData").value = JSON.stringify(units);-->
+        <!--                document.getElementById("levels").value = document.getElementById("levels").value-->
+        <!--                    +1;-->
+        <!--                if(document.getElementById("customerId").value == ""){-->
+        <!--                    document.getElementById("customerId").value-->
+        <!--                        =document.getElementById("customerInput").value;-->
+        <!--                }-->
+        <!--                console.log("Items:", items);-->
+        <!--                itemForm.submit();-->
+        <!--            });-->
+        <!--        });-->
+        <!--    </script>-->
+    </div>
+</body>
+</html>

@@ -74,17 +74,17 @@
 /* CSS for the button-styled link */
 /* Common styles for buttons */
 .button-link,
-.button-link-close {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #5086b3;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    margin-right: 10px; /* Add space between buttons */
-}
+ .button-link-close {
+     display: inline-block;
+     padding: 10px 20px;
+     background-color: #5086b3;
+     color: #fff;
+     text-decoration: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s ease, transform 0.1s ease;
+     margin-right: 10px; /* Add space between buttons */
+ }
 
 /* Styles for the primary button */
 .button-link {

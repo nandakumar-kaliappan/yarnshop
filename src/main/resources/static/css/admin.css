@@ -1,11 +1,13 @@
 .customer-container{
     display: flex;
     justify-content: center;
+
+
 }
 
 /* Add boundaries and shadow to the customers elements */
 .customers {
-
+    background-color: #f9f9f9;
     width: 80%;
     border: 1px solid #ccc; /* Example border */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Example shadow */
@@ -18,4 +20,25 @@
     max-height: 600px; /* Example max height */
     overflow-y: auto; /* Enable vertical scrolling */
     padding: 10px; /* Add padding as needed */
+}
+.customer-button-link{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0c92ec;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+/* Styles for the primary button */
+.customer-button-link {
+    background-color: #0c92ec;
+}
+
+.customer-button-link:hover {
+    background-color: #0d42ec;
+    transform: scale(1.05); /* Add a subtle hover effect */
 }

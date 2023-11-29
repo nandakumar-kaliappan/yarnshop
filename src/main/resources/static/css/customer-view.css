@@ -6,6 +6,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
 }
+
 .customer-header {
     display: flex;
     justify-content: space-between;
@@ -15,6 +16,10 @@
     padding: 10px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
+.customer-block:hover {
+    background-color: #aaaaaa;
+    transform: scale(1.008); /* Add a subtle hover effect */
 }
 .customer-body {
     padding: 10px;

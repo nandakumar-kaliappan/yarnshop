@@ -18,7 +18,7 @@ public class Customer extends BaseEntity {
 
 
     @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-    User user;
+    private User user;
 
     private String userName;
     private String customerName;
