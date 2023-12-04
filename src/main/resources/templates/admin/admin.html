@@ -45,10 +45,23 @@
 
                 <div th:if="${topRole=='admin'}">
 
-                    <div th:each="customer : ${customers}">
-                        <div th:replace="~{fragments/customer-view::customer-view-block-admin}">
-                            something
+                    <div  th:each="customer : ${customers}">
+                        <div th:class="${'customer-head-'+customer.id}"
+                             th:onclick="'toggleOnclick(\'customer-body-' + ${customer.id} + '\')'">
+                            <div
+                                    th:replace="~{fragments/customer-view::customer-view-block-admin-head}">
+                                something
+                            </div>
                         </div>
+
+                        <div style="display: none" th:class="${'customer-body-'+customer.id}">
+                            <div
+                                    th:replace="~{fragments/customer-view::customer-view-block-admin-body}">
+                                something
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
                 <br>
@@ -64,6 +77,18 @@
         <!-- Repeat as needed -->
     </section>
     <!--</editor-fold>-->
+    <script>
+        function toggleOnclick(body) {
+            var customerDetails = document.querySelector(`.${body}`);
+            if (customerDetails.style.display === 'none' || customerDetails.style.display === '') {
+                customerDetails.style.display = 'block';
+                console.log("bringing on "+body);
+            } else {
+                customerDetails.style.display = 'none';
+                console.log("hiding "+body)
+            }
+        }
+    </script>
 </main>
 
 </body>

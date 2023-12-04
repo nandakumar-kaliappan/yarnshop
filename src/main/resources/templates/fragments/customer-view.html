@@ -4,52 +4,59 @@
     <title>Interactive Form with Dynamic Options</title>
 </head>
 <body>
-<div th:fragment="customer-view-block-admin">
+<div th:fragment="customer-view-block-admin-head">
     <!--/*@thymesVar id="customer" type="com.knkweb.yarnshop.domain.Customer"*/-->
     <div class="customer-block">
-        <div class="customer-header">
+        <div class="customer-header" >
             <div>
                 Name:
                 <span style="font-weight: bold;" th:text="${customer.customerName}">John Doe</span>
             </div>
             <div>
                 Customer ID: #
-                <a
-                        style="font-weight: bold; color: white;"
-                        th:href="'admin/'+${customer.id}+'/viewdetail'"
-                        th:text="${customer.id}">12345
+                <a class = "customer-id-link" style="font-weight: bold;"
+                   th:href="'admin/'+${customer.id}+'/viewdetail'"
+                   th:text="${customer.id}">
+                    12345
                 </a>
             </div>
         </div>
-        <!--        <div class="customer-body">-->
-        <!--            <div th:if="${o.orderStatus}=='in_progress'">-->
-        <!--                <div class="button-group">-->
-        <!--                    <a class="button-link" href="#"-->
-        <!--                       th:href="'/auth/'+${o.id}+'/suborder'">View -></a>-->
-        <!--                    <a class="button-link-close" href="#"-->
-        <!--                       th:href="'/auth/'+${o.id}+'/closeoropen'">Close</a>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--            <div th:if="${o.orderStatus}=='closed'">-->
-        <!--                <div class="button-group">-->
-        <!--                    <a class="button-link-close" href="#"-->
-        <!--                       th:href="'/auth/'+${o.id}+'/closeoropen'">Open</a>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--            <br>-->
-        <!--            <p>Placed on: <span o.createdDate>08-10-2023</span></p>-->
-        <!--            &lt;!&ndash;            <button th: class="view-details-button">Next Order</button>&ndash;&gt;-->
-        <!--            <br>-->
-        <!--            &lt;!&ndash;/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/&ndash;&gt;-->
-
-        <!--            <p><span th:text="${o.count}">3</span> item(s)</p>-->
-
-        <!--            <p>Stage: <span th:text="${o.levels}">3</span> <span class="order-status"-->
-        <!--                                                                 th:text="${o.orderStatus}">"progress"</span>-->
-        <!--            </p>-->
-
-        <!--        </div>-->
     </div>
+
+
+</div>
+<div th:fragment="customer-view-block-admin-body">
+    <!--/*@thymesVar id="customer" type="com.knkweb.yarnshop.domain.Customer"*/-->
+    <div class="customer-block-body">
+        <div class="customer-body-line1">
+            <div>
+                email:
+                <span style="font-weight: bold;" th:text="${customer.email}">John Doe</span>
+            </div>
+            <div>
+                phone:
+                <span style="font-weight: bold;" th:text="${customer.phone}">John Doe</span>
+            </div>
+            <div>
+                address:
+                <span style="font-weight: bold;"
+                      th:text="${customer.address.address}">John
+                    Doe</span>
+            </div>
+
+        </div>
+        <div class="customer-body-line2">
+            <div>
+                <a class = "button-link-customer-detail-view-link"
+                   th:href="'admin/'+${customer.id}+'/viewdetail'"
+                   th:text="More">
+                    12345
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>
