@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/order-view.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order-list.css}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -19,11 +20,11 @@
         </div>
     </div>
     <div th:if="${topRole=='admin'}">
-        <div  th:replace="~{fragments/topsection::menubar-admin}">
+        <div th:replace="~{fragments/topsection::menubar-admin}">
             something
         </div>
     </div>
-    <div th:if="${topRole=='customer'}" >
+    <div th:if="${topRole=='customer'}">
         <div th:replace="~{fragments/topsection::menubar-customer}">
             something
         </div>
@@ -33,7 +34,7 @@
 <main>
     <section class="scrollable">
         <!-- Scrollable Content Goes Here -->
-        <div th:if="${#lists.size(orders)}==0"> <br> <br><br><br>There is no order yet!</div>
+        <div th:if="${#lists.size(orders)}==0"><br> <br><br><br>There is no order yet!</div>
 
         <div th:if="${topRole=='customer'}">
             <div th:each="o : ${orders.getContent}">
@@ -53,6 +54,29 @@
             </div>
         </div>
         <br>
+        <div class="page-navigations">
+            <span th:if="${orders.hasPrevious()}">
+            <a th:href="@{/auth/orderslist(page=0)}" style="text-decoration:none;"
+               data-tooltip="First">
+                <i class="fa-solid fa-angles-left fa-border"></i>
+            </a>
+            <a th:href="@{/auth/orderslist(page=${orders.getNumber()-1})}"
+               style="text-decoration:none;" data-tooltip="Previous">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+        </span>
+            <span th:text="'Page '+ ${ orders.getNumber()+1}"></span>
+            <span th:if="${orders.hasNext()}">
+            <a th:href="@{/auth/orderslist(page=${orders.getNumber()+1})}"
+               style="text-decoration:none;" data-tooltip="Next">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+            <a th:href="@{/auth/orderslist(page=${orders.getSize()-1})}"
+               style="text-decoration:none;" data-tooltip="Last">
+                <i class="fa-solid fa-angles-right fa-border"></i>
+            </a>
+        </span>
+        </div>
 
         <!-- Repeat as needed -->
     </section>

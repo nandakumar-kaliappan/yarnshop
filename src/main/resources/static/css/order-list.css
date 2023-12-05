@@ -1,0 +1,34 @@
+/* Styles for the page-navigations div and its child elements */
+.page-navigations {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    /* Add more styles as needed */
+}
+
+.page-navigations a {
+    margin: 0 5px;
+    color: #333;
+    position: relative;
+    /* Additional link styles */
+}
+
+.page-navigations a:hover::after {
+    content: attr(data-tooltip); /* Display the attribute value as tooltip text */
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page-navigations a:hover::after {
+    opacity: 1; /* Show the tooltip on hover */
+}
