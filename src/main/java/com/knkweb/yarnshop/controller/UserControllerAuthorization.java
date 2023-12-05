@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
@@ -60,11 +61,12 @@ public class UserControllerAuthorization {
     }
 
     @GetMapping("/admin/admin")
-    public String adminstrationAdmin(Model model, @AuthenticationPrincipal UserDetails userDetails){
+    public String adminstrationAdmin(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
+                                     @AuthenticationPrincipal UserDetails userDetails){
         System.out.println("admin page");
         model.addAttribute("username",userDetails.getUsername());
         model.addAttribute("topRole",userService.findMaxRole(userDetails));
-        model.addAttribute("customers",customerService.findAll());
+        model.addAttribute("customers",customerService.findAll(page));
         System.out.println(userDetails.getUsername());
         return "admin/admin";
     }

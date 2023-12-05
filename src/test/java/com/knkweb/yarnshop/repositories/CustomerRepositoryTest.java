@@ -14,20 +14,18 @@ class CustomerRepositoryTest {
     @Autowired
     CustomerRepository customerRepository;
 
+
     @Test
-    void findByCustomerName() {
+    void testFindByUser() {
+        Customer customerSai = customerRepository.findByCustomerName("Sai Textile").get();
+        Customer customerTest = customerRepository.findByUser(customerSai.getUser()).get();
+        assertThat(customerSai).isEqualTo(customerTest);
+    }
+
+    @Test
+    void testFindByCustomerName() {
         Customer customerSai = customerRepository.findByCustomerName("Sai Textile").get();
         assertThat(customerSai).isNotNull();
         assertThat(customerSai.getCustomerName()).isEqualTo("Sai Textile");
     }
-
-    @Test
-    void findByUser() {
-        Customer customerSai = customerRepository.findByCustomerName("Sai Textile").get();
-        Customer customerTest = customerRepository.findByUser(customerSai.getUser()).get();
-        assertThat(customerSai).isEqualTo(customerTest);
-
-    }
-
-
 }

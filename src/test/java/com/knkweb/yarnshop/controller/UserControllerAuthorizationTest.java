@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -61,7 +62,7 @@ class UserControllerAuthorizationTest {
                 .andExpect(MockMvcResultMatchers.view().name("admin/admin"))
                 .andExpect(MockMvcResultMatchers.model().attribute("username","manager"))
                 .andExpect(MockMvcResultMatchers.model().attribute("topRole","admin"))
-                .andExpect(MockMvcResultMatchers.model().attribute("customers", isA(ArrayList.class)));
+                .andExpect(MockMvcResultMatchers.model().attribute("customers", isA(Page.class)));
 
     }
 
@@ -149,4 +150,7 @@ class UserControllerAuthorizationTest {
     }
 
 
+    @Test
+    void adminstrationAdmin() {
+    }
 }

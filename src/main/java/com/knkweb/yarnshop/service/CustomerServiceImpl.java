@@ -4,6 +4,8 @@ import com.knkweb.yarnshop.command.CustomerCommand;
 import com.knkweb.yarnshop.converter.CustomerCommandToCustomer;
 import com.knkweb.yarnshop.domain.Customer;
 import com.knkweb.yarnshop.repositories.CustomerRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +32,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
+    public Page<Customer> findAll(int page) {
+
+        return customerRepository.findAll(PageRequest.of(page,5));
     }
 
     @Override

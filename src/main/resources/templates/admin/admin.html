@@ -10,11 +10,11 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<!--    <link rel="stylesheet" type="text/css"-->
-<!--          th:href="@{/static/fontawesome-free-6.5.1-web/css/fontawesome.css}">-->
-<!---->
-<!--    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" type="text/css"-->
+    <!--          th:href="@{/static/fontawesome-free-6.5.1-web/css/fontawesome.css}">-->
+    <!---->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 </head>
 <body>
 <header>
@@ -49,40 +49,63 @@
   align-items: center;">
                     Customers</span>
                 <div class=" customer-existing">
-                <div th:if="${#lists.size(customers)}==0"> There is no customer yet!</div>
+                    <div th:if="${#lists.size(customers)}==0"> There is no customer yet!</div>
 
-                <div th:if="${topRole=='admin'}">
+                    <div th:if="${topRole=='admin'}">
 
-                    <div  th:each="customer : ${customers}">
-                        <div th:class="${'customer-head-'+customer.id}"
-                             th:onclick="'toggleOnclick(\'customer-body-' + ${customer.id} + '\')'">
-                            <div
-                                    th:replace="~{fragments/customer-view::customer-view-block-admin-head}">
-                                something
+                        <div th:each="customer : ${customers.getContent()}">
+                            <div th:class="${'customer-head-'+customer.id}"
+                                 th:onclick="'toggleOnclick(\'customer-body-' + ${customer.id} + '\')'">
+                                <div
+                                        th:replace="~{fragments/customer-view::customer-view-block-admin-head}">
+                                    something
+                                </div>
                             </div>
-                        </div>
 
-                        <div style="display: none" th:class="${'customer-body-'+customer.id}">
-                            <div
-                                    th:replace="~{fragments/customer-view::customer-view-block-admin-body}">
-                                something
+                            <div style="display: none" th:class="${'customer-body-'+customer.id}">
+                                <div
+                                        th:replace="~{fragments/customer-view::customer-view-block-admin-body}">
+                                    something
+                                </div>
                             </div>
+
+
                         </div>
-
-
                     </div>
+                    <br>
                 </div>
-                <br>
-            </div>
-            <div class="customer-add">
-                <a class="customer-button-link" href="#"
-                   th:href="@{/admin/customer/new}">
-                    New &nbsp;
-                    <i class="fa-solid fa-user-plus"></i>
-                </a>
+                <div class="page-navigations">
+                    <span th:if="${customers.hasPrevious()}">
+                    <a th:href="@{/admin/admin(page=0)}" style="text-decoration:none;"
+                       data-tooltip="First">
+                        <i class="fa-solid fa-angles-left fa-border"></i>
+                    </a>
+                    <a th:href="@{/admin/admin(page=${customers.getNumber()-1})}"
+                       style="text-decoration:none;" data-tooltip="Previous">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </a>
+                    </span>
+                    <span th:text="'Page '+ ${ customers.getNumber()+1}"></span>
+                    <span th:if="${customers.hasNext()}">
+                    <a th:href="@{/admin/admin(page=${customers.getNumber()+1})}"
+                       style="text-decoration:none;" data-tooltip="Next">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                    <a th:href="@{/admin/admin(page=${customers.getTotalPages()-1})}"
+                       style="text-decoration:none;" data-tooltip="Last">
+                        <i class="fa-solid fa-angles-right fa-border"></i>
+                    </a>
+                    </span>
+                </div>
+                <div class="customer-add">
+                    <a class="customer-button-link" href="#"
+                       th:href="@{/admin/customer/new}">
+                        New &nbsp;
+                        <i class="fa-solid fa-user-plus"></i>
+                    </a>
 
+                </div>
             </div>
-        </div>
         </div>
 
         <!-- Repeat as needed -->
@@ -93,10 +116,10 @@
             var customerDetails = document.querySelector(`.${body}`);
             if (customerDetails.style.display === 'none' || customerDetails.style.display === '') {
                 customerDetails.style.display = 'block';
-                console.log("bringing on "+body);
+                console.log("bringing on " + body);
             } else {
                 customerDetails.style.display = 'none';
-                console.log("hiding "+body)
+                console.log("hiding " + body)
             }
         }
     </script>

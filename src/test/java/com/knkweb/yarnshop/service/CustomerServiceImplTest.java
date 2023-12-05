@@ -8,6 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ class CustomerServiceImplTest {
     @InjectMocks
     CustomerServiceImpl customerService;
 
-    Customer customer;
+    Customer customer = Customer.builder().customerName("TestCustomer").build();
     List<Customer> customers;
     @BeforeEach
     void setup(){
@@ -47,15 +50,19 @@ class CustomerServiceImplTest {
         verifyNoMoreInteractions(customerRepository);
     }
 
+
     @Test
-    void findAll() {
-        when(customerRepository.findAll())
-                .thenReturn(customers);
+    void testFindAll() {
+        List<Customer> customers = new ArrayList<>();
+        customers.add(customer);
+        when(customerRepository.findAll(any(Pageable.class)))
+                .thenReturn(new PageImpl(customers));
 
-        Customer customer = customerService.findAll().get(0);
+        Page<Customer> customerPage = customerService.findAll(0);
 
-        assertThat(customer.getCustomerName()).isEqualTo("testCustomer");
-        verify(customerRepository,times(1)).findAll();
+        Customer customerReturned = customerPage.getContent().get(0);
+        assertThat(customerReturned).isEqualTo(customer);
+        verify(customerRepository,times(1)).findAll(any(Pageable.class));
         verifyNoMoreInteractions(customerRepository);
     }
 }

@@ -71,7 +71,7 @@
                style="text-decoration:none;" data-tooltip="Next">
                 <i class="fa-solid fa-angle-right"></i>
             </a>
-            <a th:href="@{/auth/orderslist(page=${orders.getSize()-1})}"
+            <a th:href="@{/auth/orderslist(page=${orders.getTotalPages()-1})}"
                style="text-decoration:none;" data-tooltip="Last">
                 <i class="fa-solid fa-angles-right fa-border"></i>
             </a>
