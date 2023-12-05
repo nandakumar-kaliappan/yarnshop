@@ -12,7 +12,10 @@
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
         <div class="end-button">
-            <a th:href="@{/homepage}" class="button-like-link">Sign In</a>
+            <a th:href="@{/homepage}" class="button-like-link">
+                Sign In
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </a>
         </div>
     </ul>
 </div>
@@ -21,11 +24,12 @@
     <ul class="menu-bar">
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#" th:href="@{/auth/orderslist}" >Orders</a></li>
+        <li><a href="#" th:href="@{/auth/orderslist}">Orders</a></li>
         <li><a href="#">Settings</a></li>
         <div class="end-button">
-            <span class="user-name" th:text="${username}"></span>
-            <form method="post"  th:action="@{/logout}">
+            <span class="user-name"
+                  th:utext="'<i class=\'fa-solid fa-circle-user\'></i>   ' + ${username}"></span>
+            <form method="post" th:action="@{/logout}">
                 <input type="submit" class="button" value="Logout"/>
             </form>
         </div>
@@ -37,15 +41,17 @@
     <ul class="menu-bar">
         <li><a href="#">Products</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#" th:href="@{/auth/orderslist}" >Orders</a></li>
+        <li><a href="#" th:href="@{/auth/orderslist}">Orders</a></li>
         <li><a href="#" th:href="@{/admin/quick-order}">Quick Order</a></li>
         <li><a href="#" th:href="@{/admin/admin}">Admin</a></li>
         <li><a href="#">Settings</a></li>
         <div class="end-button">
-            <span class="user-name" th:text="${username}"></span>
-            <form method="post"  th:action="@{/logout}">
+            <span class="user-name"
+                  th:utext="'<i class=\'fa-solid fa-circle-user\'></i>   ' + ${username}"></span>
+            <form method="post" th:action="@{/logout}">
                 <input type="submit" class="button" value="Logout"/>
             </form>
+
         </div>
     </ul>
 </div>

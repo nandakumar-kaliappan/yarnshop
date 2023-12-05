@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Interactive Form with Dynamic Options</title>
+
 </head>
 <body>
 <div th:fragment="customer-view-block-admin-head">
     <!--/*@thymesVar id="customer" type="com.knkweb.yarnshop.domain.Customer"*/-->
     <div class="customer-block">
-        <div class="customer-header" >
-            <div>
-                Name:
+        <div class="customer-header">
+            <div >
+                <span><i class="fa-solid fa-user"></i></i>&nbsp;</span>
                 <span style="font-weight: bold;" th:text="${customer.customerName}">John Doe</span>
             </div>
             <div>
-                Customer ID: #
-                <a class = "customer-id-link" style="font-weight: bold;"
+                <span><i class="fa fa-address-card"></i>&nbsp;</span>
+                <a class="customer-id-link" style="font-weight: bold;"
                    th:href="'admin/'+${customer.id}+'/viewdetail'"
                    th:text="${customer.id}">
                     12345
@@ -30,15 +31,15 @@
     <div class="customer-block-body">
         <div class="customer-body-line1">
             <div>
-                email:
+                <i class="fa-solid fa-envelope"></i> &nbsp;
                 <span style="font-weight: bold;" th:text="${customer.email}">John Doe</span>
             </div>
             <div>
-                phone:
+                <i class="fa-solid fa-phone"></i> &nbsp;
                 <span style="font-weight: bold;" th:text="${customer.phone}">John Doe</span>
             </div>
             <div>
-                address:
+                <i class="fa-solid fa-location-dot"></i> &nbsp;
                 <span style="font-weight: bold;"
                       th:text="${customer.address.address}">John
                     Doe</span>
@@ -47,10 +48,9 @@
         </div>
         <div class="customer-body-line2">
             <div>
-                <a class = "button-link-customer-detail-view-link"
-                   th:href="'admin/'+${customer.id}+'/viewdetail'"
-                   th:text="More">
-                    12345
+                <a class="button-link-customer-detail-view-link"
+                   th:href="'admin/' + ${customer.id} + '/viewdetail'">
+                    More <i class="fa-solid fa-angles-right"></i>
                 </a>
             </div>
         </div>

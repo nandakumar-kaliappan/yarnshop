@@ -10,31 +10,48 @@
 
     <div class="order-block">
         <div class="order-header">
-            <div style="font-weight: bold;">Name:
+            <div style="font-weight: bold;">
+                <span><i class="fa-solid fa-user"></i></i>&nbsp;</span>
                 <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
                 <span th:text="${o.customer.customerName}">John Doe</span></div>
-            <div style="font-weight: bold;">Order ID: #<a style="color: white;"
-                                                          th:href="'auth/'+${o.id}+'/viewdetail'"
-                                                          th:text="${o.id}">12345
-            </a></div>
+            <div style="font-weight: bold;">
+                <i class="fa-solid fa-cart-shopping"></i>&nbsp; ID &nbsp; #
+                <a
+                        style="color: white;text-decoration: none"
+                        th:href="'auth/'+${o.id}+'/viewdetail'"
+                        th:text="${o.id}">12345
+                </a>
+            </div>
         </div>
         <div class="order-body">
             <div th:if="${o.orderStatus}=='in_progress'">
                 <div class="button-group">
                     <a class="button-link" href="#"
-                                             th:href="'/auth/'+${o.id}+'/suborder'">View -></a>
+                       th:href="'/auth/'+${o.id}+'/suborder'">
+                        View
+                        &nbsp; <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                     <a class="button-link-close" href="#"
-                       th:href="'/auth/'+${o.id}+'/closeoropen'">Close</a>
+                       th:href="'/auth/'+${o.id}+'/closeoropen'">
+                        Close &nbsp;
+                        <i class="fa-solid fa-lock"></i></a>
                 </div>
             </div>
             <div th:if="${o.orderStatus}=='closed'">
                 <div class="button-group">
                     <a class="button-link-close" href="#"
-                       th:href="'/auth/'+${o.id}+'/closeoropen'">Open</a>
+                       th:href="'/auth/'+${o.id}+'/closeoropen'">
+                        Open &nbsp;
+                        <i class="fa-solid fa-lock-open"></i>
+                    </a>
                 </div>
             </div>
             <br>
-            <p>Placed on: <span o.createdDate>08-10-2023</span></p>
+            <p>
+                <i class="fa-solid fa-calendar-days"></i>
+                Ordered:
+                <span o.createdDate>08-10-2023</span>
+            </p>
             <!--            <button th: class="view-details-button">Next Order</button>-->
             <br>
             <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
@@ -52,23 +69,33 @@
 
     <div class="order-block">
         <div class="order-header">
-            <div style="font-weight: bold;">Name:
+            <div style="font-weight: bold;">
+                <span><i class="fa-solid fa-user"></i></i>&nbsp;</span>
                 <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->
                 <span th:text="${o.customer.customerName}">John Doe</span></div>
-            <div style="font-weight: bold;">Order ID: #<a style="color: white;"
-                                                          th:href="'auth/'+${o.id}+'/viewdetail'"
-                                                           th:text="${o.id}">12345</a></div>
+            <div style="font-weight: bold;">
+                <i class="fa-solid fa-cart-shopping"></i>&nbsp; ID &nbsp;#
+                <a style="color: white;"
+                   th:href="'auth/'+${o.id}+'/viewdetail'"
+                   th:text="${o.id}">12345</a></div>
         </div>
         <div class="order-body">
             <div th:if="${o.orderStatus}=='in_progress'">
                 <div class="button-group">
                     <a class="button-link" href="#"
-                       th:href="'/auth/'+${o.id}+'/suborder'">View -></a>
+                       th:href="'/auth/'+${o.id}+'/suborder'">
+                        View
+                        &nbsp; <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                 </div>
             </div>
 
             <br>
-            <p>Placed on: <span o.createdDate>08-10-2023</span></p>
+            <p>
+                <i class="fa-solid fa-calendar-days"></i>
+                Ordered:
+                <span o.createdDate>08-10-2023</span>
+            </p>
             <!--            <button th: class="view-details-button">Next Order</button>-->
             <br>
             <!--/*@thymesVar id="o" type="com.knkweb.yarnshop.domain.OrderHeader"*/-->

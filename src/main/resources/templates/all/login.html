@@ -5,9 +5,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/login-styles.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 </head>
 <body>
+<div class="background-container"></div>
 <header>
     <div th:if="${topRole=='all'}">
         <div th:replace="~{fragments/topsection::menubar-all}">
@@ -38,19 +42,27 @@
     <br>
     <br>
     <br>
-    <div class="login">
-        <h1 class="login-title" >Login</h1>
+    <div class="login-container">
+        <h1 class="login-title" style="color: #0056b3">Enter Credentials</h1>
         <div class="login-error" th:if="${error}">
             Unable to login. Check your username and password.
         </div>
         <!--    <p>New here? Click-->
         <!--        <a th:href="@{/register}">here</a> to register.</p>-->
         <form class="login-form" method="POST" th:action="@{/login}" id="loginForm">
-            <label class="login-un-lable" for="username">Username: </label>
+            <label class="login-un-lable" for="username">
+                <i class="fa-solid fa-circle-user"> </i>
+                Username
+            </label>
             <input class="login-un-input" type="text" name="username" id="username"/><br/>
-            <label class="login-pw-label" for="password">Password: </label>
+            <label class="login-pw-label" for="password">
+                <i class="fa-solid fa-key"></i>
+                Password
+            </label>
             <input class="login-pw-input" type="password" name="password" id="password"/><br/>
-            <input class="login-button" type="submit" value="Login"/>
+            <button class="login-button" type="submit">
+                Login <i class="fa-solid fa-unlock-keyhole"></i>
+            </button>
         </form>
     </div>
 
