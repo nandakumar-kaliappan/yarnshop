@@ -3,6 +3,7 @@ package com.knkweb.yarnshop.service;
 import com.knkweb.yarnshop.command.QuickOrderCommand;
 import com.knkweb.yarnshop.domain.Customer;
 import com.knkweb.yarnshop.domain.OrderHeader;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -10,9 +11,9 @@ public interface OrderHeaderService {
 
     void saveOrUpdate(QuickOrderCommand quickOrderCommand);
 
-    List<OrderHeader> findAllOrders();
+    Page<OrderHeader> findAllOrders(int page);
 
-    List<OrderHeader> findOrders(Customer customer);
+    Page<OrderHeader> findOrders(Customer customer, int page);
 
     QuickOrderCommand findProductsOfLastStage(long orderId);
 

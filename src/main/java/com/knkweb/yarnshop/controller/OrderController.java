@@ -8,6 +8,7 @@ import com.knkweb.yarnshop.repositories.CustomerRepository;
 import com.knkweb.yarnshop.repositories.ProductRepository;
 import com.knkweb.yarnshop.service.OrderHeaderService;
 import com.knkweb.yarnshop.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -56,7 +57,9 @@ public class OrderController {
     }
 
     @RequestMapping("/auth/orderslist")
-    public String viewAllOrders(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+    public String viewAllOrders(Model model,
+                                @RequestParam(value = "page",defaultValue = "0") int page,
+                                @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println("Orders list");
         String topRole = userService.findMaxRole(userDetails);
         model.addAttribute("topRole", topRole);
@@ -73,13 +76,15 @@ public class OrderController {
             System.out.println(user.getCustomer());
             System.out.println("__".repeat(50));
 
-            model.addAttribute("orders", orderHeaderService.findOrders(user.getCustomer()));
+            model.addAttribute("orders", orderHeaderService.findOrders(user.getCustomer(),page));
         } else {
             System.out.println("__".repeat(50));
             System.out.println("TopRole: " + topRole);
             System.out.println("Admin Requesting order");
             System.out.println("__".repeat(50));
-            model.addAttribute("orders", orderHeaderService.findAllOrders());
+            Page<OrderHeader> page1 = orderHeaderService.findAllOrders(page);
+            System.out.println(page1.getContent().size());
+            model.addAttribute("orders",page1);
         }
         return "authenticated/orders-list";
     }

@@ -6,9 +6,12 @@ import com.knkweb.yarnshop.converter.QuickOrderCommandToOrderHeader;
 import com.knkweb.yarnshop.domain.Customer;
 import com.knkweb.yarnshop.domain.OrderHeader;
 import com.knkweb.yarnshop.repositories.OrderHeaderRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,13 +68,14 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
     }
 
     @Override
-    public List<OrderHeader> findAllOrders() {
-        return orderHeaderRepository.findAll();
+    public Page<OrderHeader> findAllOrders(int page) {
+
+        return orderHeaderRepository.findAll(PageRequest.of(page, 3));
     }
 
     @Override
-    public List<OrderHeader> findOrders(Customer customer) {
-        return orderHeaderRepository.findAllByCustomer(customer);
+    public Page<OrderHeader> findOrders(Customer customer, int page) {
+        return orderHeaderRepository.findAllByCustomer(customer,PageRequest.of(page, 5));
     }
 
     @Override
