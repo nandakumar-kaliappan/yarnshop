@@ -6,6 +6,7 @@ import com.knkweb.yarnshop.domain.Customer;
 import com.knkweb.yarnshop.repositories.CustomerRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Page<Customer> findAll(int page) {
 
-        return customerRepository.findAll(PageRequest.of(page,5));
+        return customerRepository.findAll(PageRequest.of(page,5, Sort.by("id").ascending()));
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.knkweb.yarnshop.domain.OrderHeader;
 import com.knkweb.yarnshop.repositories.OrderHeaderRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,12 +72,13 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
     @Override
     public Page<OrderHeader> findAllOrders(int page) {
 
-        return orderHeaderRepository.findAll(PageRequest.of(page, SIZE_OF_PAGE));
+        return orderHeaderRepository.findAll(PageRequest.of(page, SIZE_OF_PAGE, Sort.by("id").descending()));
     }
 
     @Override
     public Page<OrderHeader> findOrders(Customer customer, int page) {
-        return orderHeaderRepository.findAllByCustomer(customer,PageRequest.of(page, SIZE_OF_PAGE));
+        return orderHeaderRepository.findAllByCustomer(customer,PageRequest.of(page, SIZE_OF_PAGE
+                ,Sort.by("id").descending()));
     }
 
     @Override
