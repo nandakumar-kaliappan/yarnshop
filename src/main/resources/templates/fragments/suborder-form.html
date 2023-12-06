@@ -7,44 +7,84 @@
 </head>
 <body>
 <div th:fragment="suborder-items">
-    <div class="container">
-        <div class="left-block">
-            <h4 style="margin-bottom: 20px;">Previous Order</h4>
-            <!--/*@thymesVar id="quickOrderCommand" type="com.knkweb.yarnshop.command.QuickOrderCommand"*/-->
-            <ul th:each="p: ${quickOrderCommand.itemsList}" class="item-list">
-                <!-- Items will be populated here by Thymeleaf -->
-                <li>
-                    <input type="checkbox" th:text="${p}" th:value="${p}">
-                </li>
-                <!-- Add more items as needed -->
-            </ul>
+    <div class="outer-container">
+        <div class="customer-block">
+            <div class="customer-header">
+                <div >
+                    <span><i class="fa-solid fa-user"></i></i>&nbsp;</span>
+                    <span style="font-weight: bold;" th:text="${customer.customerName}">John Doe</span>
+                </div>
+                <div>
+                    <span><i class="fa fa-address-card"></i>&nbsp;</span>
+                    <a class="customer-id-link" style="font-weight: bold;"
+                       th:href="'admin/'+${customer.id}+'/viewdetail'"
+                       th:text="${customer.id}">
+                        12345
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="right-block">
-            <h2 style="margin-bottom: 30px;border-bottom: 1px solid #aaaaaa;">Items for Next
-                Order</h2>
-            <ul id="selected-items">
-                <!-- Selected items will appear here -->
-            </ul>
-        </div>
-        <div>
-            <form id="itemForm1" th:object="${quickOrderCommand}"
-                  th:action="@{/admin/quick-order/replace}" method="post">
-                <input type="hidden" th:field="*{itemsData}" id="itemsData" name="itemsData" value="">
-                <input type="hidden" th:field="*{quantitiesData}" id="quantitiesData"
-                       name="quantitiesData" value="">
-                <input type="hidden" th:field="*{unitsData}" id="unitsData" name="unitsData" value="">
-                <input type="hidden" th:field="*{levels}" id="levels" name="levels"
-                       value="*{levels}">
-                <input type="hidden" th:field="*{customerId}" id="customerId" name="customerId"
-                       value="*{customerId}">
-                <input type="hidden" th:field="*{orderHeaderId}" id="orderHeaderId" name="orderHeaderId"
-                       value="*{orderHeaderId}">
-                <input type="hidden" th:field="*{orderStatus}" id="orderStatus" name="orderStatus"
-                       value="*{orderStatus}">
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+        <div class="customer-body-line1">
+            <div>
+                <i class="fa-solid fa-envelope"></i> &nbsp;
+                <span style="font-weight: bold;" th:text="${customer.email}">John Doe</span>
+            </div>
+            <div>
+                <i class="fa-solid fa-phone"></i> &nbsp;
+                <span style="font-weight: bold;" th:text="${customer.phone}">John Doe</span>
+            </div>
+            <div>
+                <i class="fa-solid fa-location-dot"></i> &nbsp;
+                <span style="font-weight: bold;"
+                      th:text="${customer.address.address}">John
+                    Doe</span>
+            </div>
 
+        </div>
+        <div class="container">
+
+            <div class="left-block">
+                <h4 style="margin-bottom: 20px;">Previous Order</h4>
+                <!--/*@thymesVar id="quickOrderCommand" type="com.knkweb.yarnshop.command.QuickOrderCommand"*/-->
+                <ul th:each="p: ${quickOrderCommand.itemsList}" class="item-list">
+                    <!-- Items will be populated here by Thymeleaf -->
+                    <li>
+                        <input type="checkbox" th:text="${p}" th:value="${p}">
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
+            </div>
+            <div class="right-block">
+                <h2 style="margin-bottom: 30px;border-bottom: 1px solid #aaaaaa;">Items for Next
+                    Order</h2>
+                <ul id="selected-items">
+                    <!-- Selected items will appear here -->
+                </ul>
+            </div>
+            <div>
+                <form id="itemForm1" th:object="${quickOrderCommand}"
+                      th:action="@{/admin/quick-order/replace}" method="post">
+                    <input type="hidden" th:field="*{itemsData}" id="itemsData" name="itemsData"
+                           value="">
+                    <input type="hidden" th:field="*{quantitiesData}" id="quantitiesData"
+                           name="quantitiesData" value="">
+                    <input type="hidden" th:field="*{unitsData}" id="unitsData" name="unitsData"
+                           value="">
+                    <input type="hidden" th:field="*{levels}" id="levels" name="levels"
+                           value="*{levels}">
+                    <input type="hidden" th:field="*{customerId}" id="customerId" name="customerId"
+                           value="*{customerId}">
+                    <input type="hidden" th:field="*{orderHeaderId}" id="orderHeaderId"
+                           name="orderHeaderId"
+                           value="*{orderHeaderId}">
+                    <input type="hidden" th:field="*{orderStatus}" id="orderStatus"
+                           name="orderStatus"
+                           value="*{orderStatus}">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+        </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

@@ -110,6 +110,8 @@ public class OrderController {
         QuickOrderCommand quickOrderCommand1 =
                 orderHeaderService.findProductsOfLastStage(Long.parseLong(orderId));
         model.addAttribute("quickOrderCommand", quickOrderCommand1);
+        model.addAttribute("customer",
+                customerRepository.findById(quickOrderCommand1.getCustomerId()).get());
         System.out.println("__".repeat(50));
         System.out.println("sub order request received for: " + orderId);
         System.out.println("Admin Requesting order");

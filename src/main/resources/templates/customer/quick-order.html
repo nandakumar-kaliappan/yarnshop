@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    meta charset="UTF-8">
     <title>Quick order</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
@@ -31,6 +30,10 @@
 
 <main>
     <section class="scrollable">
+        <div class = "user-details">
+            <span th:if="${quickOrderCommand.customerId!=null}"
+                th:text="${quickOrderCommand.customerId}"> id </span>
+        </div>
         <!-- Scrollable Content Goes Here -->
         <div th:replace="~{fragments/quick-order-form::quick-order-user(${products})}">
             something
