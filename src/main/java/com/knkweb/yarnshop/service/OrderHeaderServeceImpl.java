@@ -72,13 +72,13 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
     @Override
     public Page<OrderHeader> findAllOrders(int page) {
 
-        return orderHeaderRepository.findAll(PageRequest.of(page, SIZE_OF_PAGE, Sort.by("id").descending()));
+        return orderHeaderRepository.findAll(PageRequest.of(page, SIZE_OF_PAGE, Sort.by("lastModifiedDate").descending()));
     }
 
     @Override
     public Page<OrderHeader> findOrders(Customer customer, int page) {
         return orderHeaderRepository.findAllByCustomer(customer,PageRequest.of(page, SIZE_OF_PAGE
-                ,Sort.by("id").descending()));
+                ,Sort.by("lastModifiedDate").descending()));
     }
 
     @Override

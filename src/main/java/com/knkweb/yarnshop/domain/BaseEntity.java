@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 @MappedSuperclass
 public class BaseEntity {
     @Id
-    @NotNull(message = "ID Can't be null")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

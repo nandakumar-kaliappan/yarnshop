@@ -49,8 +49,8 @@
             <br>
             <p>
                 <i class="fa-solid fa-calendar-days"></i>
-                Ordered:
-                <span o.createdDate>08-10-2023</span>
+                Last Ordered:
+                <span th:text="${#dates.format(o.lastModifiedDate, 'dd-MM-yyyy HH:mm')}">15-10-2023 14:50</span>
             </p>
             <!--            <button th: class="view-details-button">Next Order</button>-->
             <br>
