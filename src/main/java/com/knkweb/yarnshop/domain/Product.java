@@ -3,6 +3,9 @@ package com.knkweb.yarnshop.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +18,8 @@ import java.util.Set;
 @ToString
 @Entity
 public class Product extends BaseEntity {
+    @NotBlank
+    @Size(min = 3, max = 45, message = "Customer Name length must be between 3 and 45")
     private String colour;
     private String description;
 

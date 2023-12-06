@@ -18,6 +18,7 @@ import java.util.Optional;
 @Service
 public class OrderHeaderServeceImpl implements OrderHeaderService {
 
+    public static final int SIZE_OF_PAGE = 3;
     private final OrderHeaderRepository orderHeaderRepository;
     private final QuickOrderCommandToOrderHeader cmdToObjConverter;
     private final OrderHeaderToQuickOrderCommand objToCmdConverter;
@@ -70,12 +71,12 @@ public class OrderHeaderServeceImpl implements OrderHeaderService {
     @Override
     public Page<OrderHeader> findAllOrders(int page) {
 
-        return orderHeaderRepository.findAll(PageRequest.of(page, 3));
+        return orderHeaderRepository.findAll(PageRequest.of(page, SIZE_OF_PAGE));
     }
 
     @Override
     public Page<OrderHeader> findOrders(Customer customer, int page) {
-        return orderHeaderRepository.findAllByCustomer(customer,PageRequest.of(page, 5));
+        return orderHeaderRepository.findAllByCustomer(customer,PageRequest.of(page, SIZE_OF_PAGE));
     }
 
     @Override

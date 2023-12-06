@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -16,6 +17,7 @@ import javax.persistence.*;
 public class Authority extends BaseEntity implements GrantedAuthority {
 
     @ManyToOne
+    @NotNull
     private User user;
     @Enumerated(EnumType.STRING)
     private Role role;

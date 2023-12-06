@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -69,6 +70,12 @@ public class UserControllerAuthorization {
         model.addAttribute("customers",customerService.findAll(page));
         System.out.println(userDetails.getUsername());
         return "admin/admin";
+    }
+
+    @GetMapping("/admin/customer/{customerId}}/get")
+    public String showCustomerDetails(Model model, @PathVariable("customerId") Long customerId){
+        log.debug("customer Details Requsted for id : "+ customerId );
+        return null;
     }
 
 

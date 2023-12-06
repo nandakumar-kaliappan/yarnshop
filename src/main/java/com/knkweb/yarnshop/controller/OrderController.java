@@ -13,10 +13,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @Controller
 public class OrderController {
 
@@ -48,9 +52,17 @@ public class OrderController {
     }
 
     @RequestMapping("/admin/quick-order/place")
-    public String placeOrderRequest(Model model,
+    public String placeOrderRequest(@Valid
                                     @ModelAttribute QuickOrderCommand quickOrderCommand,
+                                    BindingResult bindingResult, Model model,
                                     @AuthenticationPrincipal UserDetails userDetails) {
+
+        if (bindingResult.hasErrors()) {
+            System.out.println("Error found in validation");
+            // If there are validation errors, handle them (e.g., return to the form with error
+            // messages)
+            return "customer/quick-order"; // Return to the form to display validation errors
+        }
 
         orderHeaderService.saveOrUpdate(quickOrderCommand);
         return "redirect:/auth/orderslist";
@@ -58,7 +70,7 @@ public class OrderController {
 
     @RequestMapping("/auth/orderslist")
     public String viewAllOrders(Model model,
-                                @RequestParam(value = "page",defaultValue = "0") int page,
+                                @RequestParam(value = "page", defaultValue = "0") int page,
                                 @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println("Orders list");
         String topRole = userService.findMaxRole(userDetails);
@@ -76,7 +88,7 @@ public class OrderController {
             System.out.println(user.getCustomer());
             System.out.println("__".repeat(50));
 
-            model.addAttribute("orders", orderHeaderService.findOrders(user.getCustomer(),page));
+            model.addAttribute("orders", orderHeaderService.findOrders(user.getCustomer(), page));
         } else {
             System.out.println("__".repeat(50));
             System.out.println("TopRole: " + topRole);
@@ -84,7 +96,7 @@ public class OrderController {
             System.out.println("__".repeat(50));
             Page<OrderHeader> page1 = orderHeaderService.findAllOrders(page);
             System.out.println(page1.getContent().size());
-            model.addAttribute("orders",page1);
+            model.addAttribute("orders", page1);
         }
         return "authenticated/orders-list";
     }
@@ -109,6 +121,7 @@ public class OrderController {
 
         return "authenticated/suborder";
     }
+
     @RequestMapping("/auth/{orderId}/closeoropen")
     public String closeOrderRequest(Model model,
                                     @AuthenticationPrincipal UserDetails userDetails
@@ -122,9 +135,10 @@ public class OrderController {
         orderHeaderService.closeOrder(Long.parseLong(orderId));
         return "redirect:/auth/orderslist";
     }
+
     @RequestMapping("/auth/auth/{orderId}/viewdetail")
     public String viewOrderDetail(Model model,
-                                    @AuthenticationPrincipal UserDetails userDetails
+                                  @AuthenticationPrincipal UserDetails userDetails
             , @PathVariable String orderId) {
         String topRole = userService.findMaxRole(userDetails);
         OrderHeader orderHeader = orderHeaderService.findOrderByOrderId(Long.parseLong(orderId));
@@ -143,8 +157,8 @@ public class OrderController {
     }
 
     @RequestMapping("/admin/quick-order/replace")
-    public String replaceOrderRequest(Model model,
-                                      @ModelAttribute QuickOrderCommand quickOrderCommand,
+    public String replaceOrderRequest(Model model, @Valid
+    @ModelAttribute QuickOrderCommand quickOrderCommand,
                                       @AuthenticationPrincipal UserDetails userDetails
             , @RequestParam("itemsData") String itemsData,
                                       @RequestParam("quantitiesData") String quantitiesData,

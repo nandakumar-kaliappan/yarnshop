@@ -5,6 +5,8 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +21,12 @@ import java.util.Set;
 @Entity
 public class User extends BaseEntity implements UserDetails {
 
+    @Size(min = 3, max = 255, message = "User Name length must be between 3 and 255")
+    @NotBlank
     private String username;
+
+    @Size(min = 1, max = 255, message = "Customer Name length must be between 3 and 45")
+    @NotBlank
     private String password;
     @Builder.Default
     private boolean enabled = true;

@@ -1,9 +1,10 @@
 package com.knkweb.yarnshop.command;
 
 import com.knkweb.yarnshop.domain.Customer;
-import com.sun.istack.NotNull;
+
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 

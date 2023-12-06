@@ -22,11 +22,14 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.util.NestedServletException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static net.bytebuddy.matcher.ElementMatchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.isA;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -87,15 +90,15 @@ class OrderControllerTest {
                 .andExpect(MockMvcResultMatchers.view().name("customer/quick-order"));
     }
 
-    @Test
-    @WithMockUser(username = USERNAME_MANAGER, roles = {"CUSTOMER"})
-    void placeOrderRequest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/admin/quick-order/place")
-        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        .content("orderHeaderId=5&itemsData=Someitem"))
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
-                .andExpect(MockMvcResultMatchers.view().name("redirect:/auth/orderslist"));
-    }
+//    @Test
+//    @WithMockUser(username = USERNAME_MANAGER, roles = {"CUSTOMER"})
+//    void placeOrderRequest() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/admin/quick-order/place")
+//        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+//        .content("orderHeaderId=5&itemsData=Someitem"))
+//                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+//                .andExpect(MockMvcResultMatchers.view().name("redirect:/auth/orderslist"));
+//    }
 
     @Test
     @WithMockUser(username = USERNAME_MANAGER, roles = {"ADMIN"})
@@ -114,5 +117,21 @@ class OrderControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.view().name("authenticated/orders-list"))
                 .andExpect(MockMvcResultMatchers.model().attribute("orders",isA(Page.class)));
+    }
+    @Test
+    @WithMockUser(username = USERNAME_MANAGER, roles = {"ADMIN"})
+    void placeOrderRequestValidationFailure() throws Exception {
+        ConstraintViolationException constraintViolationException = null;
+        try {
+            mockMvc.perform(MockMvcRequestBuilders.get("/admin/quick-order/place")
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                    .content("orderHeaderId=5&itemsData=Someitem"))
+                    .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                    .andExpect(MockMvcResultMatchers.view().name("redirect:/auth/orderslist"));
+        } catch (NestedServletException nse) {
+            constraintViolationException = (ConstraintViolationException) nse.getCause();
+        }
+        assertThat(constraintViolationException).isNotNull();
+        assertThat(constraintViolationException.getConstraintViolations().size()).isEqualTo(1);
     }
 }

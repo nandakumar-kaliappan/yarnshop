@@ -3,6 +3,11 @@ package com.knkweb.yarnshop.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -21,12 +26,18 @@ public class Customer extends BaseEntity {
     private User user;
 
     private String userName;
+    @NotBlank(message = "CustomerName can't be blank")
+    @Size(min = 3, max = 45, message = "Customer Name length must be between 3 and 45")
     private String customerName;
 
     @Embedded
+    @Valid
     private Address address;
 
+    @Size(min = 10, max = 10, message = "Phone number must be 10 digit")
     private String phone;
+
+    @Email
     private String email;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
