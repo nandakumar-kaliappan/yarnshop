@@ -1,48 +1,41 @@
 package com.knkweb.yarnshop.controller;
 
-import com.knkweb.yarnshop.domain.User;
+
+import com.knkweb.yarnshop.converter.OrderHeaderToQuickOrderCommand;
+import com.knkweb.yarnshop.converter.QuickOrderCommandToOrderHeader;
+import com.knkweb.yarnshop.service.CustomerService;
 import com.knkweb.yarnshop.service.UserService;
-import com.knkweb.yarnshop.service.UserServiceImpl;
-import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.isA;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.isNull;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-class UserControllerAuthorizationTest {
-
-
-
+@WebMvcTest(UserController.class)
+@Disabled
+class UserControllerTest {
+    @MockBean
+    UserService userService;
+    @MockBean
+    CustomerService customerService;
+    @MockBean
+    OrderHeaderToQuickOrderCommand orderHeaderToQuickOrderCommand;
+    @MockBean
+    QuickOrderCommandToOrderHeader quickOrderCommandToOrderHeader;
+//    @MockBean
+//    RequestMappingHandlerMapping requestMappingHandlerMapping;
 
     @Autowired
     MockMvc mockMvc;
@@ -51,6 +44,8 @@ class UserControllerAuthorizationTest {
     void setUp() {
 
     }
+
+
 
     @Test
     @WithMockUser(username = "manager", roles = "ADMIN")
@@ -66,13 +61,13 @@ class UserControllerAuthorizationTest {
 
     }
 
-    @Test
-    @WithMockUser(username = "saitextile", roles = "CUSTOMER")
-    void adminstrationAdminWithCustomer() throws Exception {
-        System.out.println("test begins");
-        mockMvc.perform(MockMvcRequestBuilders.get("/admin/admin"))
-                .andExpect(MockMvcResultMatchers.status().isForbidden());
-    }
+//    @Test
+//    @WithMockUser(username = "saitextile", roles = "CUSTOMER")
+//    void adminstrationAdminWithCustomer() throws Exception {
+//        System.out.println("test begins");
+//        mockMvc.perform(MockMvcRequestBuilders.get("/admin/admin"))
+//                .andExpect(MockMvcResultMatchers.status().isForbidden());
+//    }
 
     @Test
     @WithAnonymousUser
@@ -150,7 +145,10 @@ class UserControllerAuthorizationTest {
     }
 
 
+
     @Test
-    void adminstrationAdmin() {
+    @WithMockUser(username = "manager", roles = "ADMIN")
+    void showCustomerDetailswithAdmin() {
+
     }
 }

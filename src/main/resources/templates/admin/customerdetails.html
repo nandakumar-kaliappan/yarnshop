@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic-page-layout.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/topsection.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order-view.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/customerdetails.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+<header>
+    <div th:if="${topRole=='all'}">
+        <div th:replace="~{fragments/topsection::menubar-all}">
+            something
+        </div>
+    </div>
+    <div th:if="${topRole=='admin'}">
+        <div th:replace="~{fragments/topsection::menubar-admin}">
+            something
+        </div>
+    </div>
+    <div th:if="${topRole=='customer'}">
+        <div th:replace="~{fragments/topsection::menubar-customer}">
+            something
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="scrollable">
+        <!-- Scrollable Content Goes Here -->
+        <div class="customer-details-section">
+            <div class="customer-block">
+                <div class="customer-header">
+                    <div >
+                        <span style="font-weight: bold">Customer Detail: </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="customer-block-body">
+                <div class="customer-body-line1">
+                    <div >
+                        <span><i class="fa-solid fa-user"></i></i>&nbsp;</span>
+                        <span  th:text="${customer.customerName}">John Doe</span>
+                    </div>
+                    <div>
+                        <span><i class="fa fa-address-card"></i>&nbsp; ID &nbsp;</span>
+                        <span
+                           th:text="${customer.id}">
+                            12345
+                        </span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i> &nbsp;
+                        <span  th:text="${customer.email}">John Doe</span>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-phone"></i> &nbsp;
+                        <span  th:text="${customer.phone}">John Doe</span>
+                    </div>
+
+                </div>
+                <div class="customer-body-line2">
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i> &nbsp;
+                        <span
+                                th:text="${customer.address.address}">John
+                    Doe</span>
+                    </div>
+                    <div>
+                        <a class="button-link-customer-detail-view-link"
+                           th:href="'customer/' + ${customer.id} + '/get'">
+                            Edit &nbsp; <i class="fa-solid fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="orders-section">
+            <div th:if="${#lists.size(orders)}==0"><br> <br><br><br>There is no order yet!</div>
+
+            <div th:if="${topRole=='customer'}">
+                <div th:each="o : ${orders.getContent}">
+                    <div
+                            th:replace="~{fragments/order-view::order-view-block-customer}">
+                        something
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${topRole=='admin'}">
+                <div th:each="o : ${orders.getContent()}">
+                    <div
+                            th:replace="~{fragments/order-view::order-view-block-admin}">
+                        something
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="page-navigations">
+            <span th:if="${orders.hasPrevious()}">
+            <a th:href="@{'/admin/customer/' + ${customer.id} + '/get?page=0'}"
+               style="text-decoration:none;"
+               data-tooltip="First">
+                <i class="fa-solid fa-angles-left fa-border"></i>
+            </a>
+            <a th:href="@{'/admin/customer/' + ${customer.id} + '/get?page=' + ${orders.getNumber()-1}}"
+               style="text-decoration:none;" data-tooltip="Previous">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+        </span>
+                <span th:text="'Page '+ ${ orders.getNumber()+1}"></span>
+                <span th:if="${orders.hasNext()}">
+            <a th:href="@{'/admin/customer/' + ${customer.id} + '/get?page=' + ${orders.getNumber()+1}}"
+               style="text-decoration:none;" data-tooltip="Next">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+            <a
+                    th:href="@{'/admin/customer/' + ${customer.id} + '/get?page=' + ${orders.getTotalPages()-1}}"
+                    style="text-decoration:none;" data-tooltip="Last">
+                <i class="fa-solid fa-angles-right fa-border"></i>
+            </a>
+        </span>
+            </div>
+        </div>
+
+        <!-- Repeat as needed -->
+    </section>
+</main>
+
+</body>
+</html>
